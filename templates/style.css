@@ -7,8 +7,9 @@
   /* overflow-x: hidden; */
 }
 
+/* header properties: background image */
 header {
-  background-image: url("images/breads-2.jpg");
+  background-image: url("images/bg.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -16,11 +17,7 @@ header {
   position: relative;
 }
 
-.container {
-  position: relative;
-  width: 100vh;
-}
-
+/* body properties */
 body {
   margin: 0;
   padding: 0;
@@ -28,9 +25,11 @@ body {
   background-color: #d9d9d9;
 }
 
+/* navigation bar properties */
 .topnav {
   position: fixed;
-  top: 0;
+  top: 0px;
+  transition: top 0.3s;
   /* width: 100%; */
   display: flex;
   justify-content: space-evenly;
@@ -39,21 +38,24 @@ body {
   margin: 2rem;
   z-index: 100;
   background-color: rgba(217, 217, 217, 0.17);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   border: 1px solid rgba(217, 217, 217, 0.17);
 }
 
+/* all anchor tags */
 a {
   text-decoration: none;
 }
 
+/* logo properties */
 .logo img {
   width: 40%;
 }
 
+/* navigation links and buttons properties */
 .nav-area {
   display: flex;
   align-items: center;
@@ -97,6 +99,7 @@ a {
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+/* welcome area */
 .welcome-text {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -128,6 +131,7 @@ a {
   font-size: 20px;
 }
 
+/* details about the bakery */
 .about-section {
   display: flex;
   justify-content: space-between;
@@ -171,6 +175,128 @@ a {
   padding: 4rem;
 }
 
+/* for the gram - instagram posts*/
+.social-media {
+  justify-content: center;
+}
+
+.gram h2 {
+  text-align: center;
+  font-style: italic;
+  margin: 3rem;
+  color: #242424;
+}
+
+.posts {
+  max-width: fit-content;
+  display: flex;
+  flex: 33.33%;
+}
+
+.posts img {
+  width: 250px;
+  padding: 2rem;
+}
+
+.posts img:nth-child(odd) {
+  height: 440px;
+}
+
+.posts img:nth-child(even) {
+  margin-top: 10rem;
+  height: 440px;
+}
+
+.follow {
+  text-align: center;
+  padding: 3rem;
+}
+
+/* footer details and properties */
+footer {
+  background-color: #1f3a48;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: center;
+}
+
+.connect {
+  padding: 5rem;
+}
+
+.connect p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+}
+
+.social iconify-icon {
+  padding: 1rem;
+  font-size: 2rem;
+  color: #987654;
+}
+
+.contact-info {
+  padding: 5rem;
+}
+
+.contact-info p {
+  font-style: italic;
+  color: #d9d9d9;
+  padding-bottom: 1.5rem;
+}
+
+.call-email p {
+  padding-bottom: 2.4rem;
+  color: #987654;
+  font-size: 20px;
+}
+
+.address {
+  padding: 5rem;
+}
+
+.address p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.physical-address iconify-icon {
+  padding: 1rem;
+  font-size: 2rem;
+  color: #987654;
+}
+
+.physical-address p {
+  padding-top: 1.1rem;
+  font-style: normal;
+  color: #987654;
+}
+
+.bottom-nav {
+  padding: 5rem;
+}
+
+.bottom-nav p:nth-child(1) {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.bottom-nav p {
+  padding-bottom: 1rem;
+  color: #987654;
+}
+
+.copyright {
+  font-style: italic;
+  text-align: center;
+}
 /* medium display styles */
 @media screen and (max-width: 850px) {
   .topnav {
@@ -185,11 +311,12 @@ a {
   }
   .about-section {
     flex-direction: column;
-    margin: 0;
+    margin: 0 2rem;
+
   }
 
   .about {
-    margin: 0 2rem;
+    margin-left: 3rem;
   }
 
   .about h2 {
@@ -207,4 +334,14 @@ a {
     gap: 3;
     margin-right: 2rem;
   }
+
+  .posts {
+    display: flex;
+    max-width: 1200px;
+    /* width: 100%; */
+    flex-wrap: wrap;
+    justify-content: center;
+    /* padding: 2rem; */
+  }
+
 }
