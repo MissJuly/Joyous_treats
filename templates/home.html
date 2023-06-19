@@ -7,14 +7,6 @@
 
       {% include 'icon.html' %}
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/home-style.css') }}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <title>Joyous Treats</title>
   </head>
   <body>
@@ -25,13 +17,13 @@
 
         <div class="welcome-text">
           <p>A home away from home</p>
-          <a href="{{ url_for(shop) }}">Discover Now</a>
+          <a href="/shop">Discover Now</a>
         </div>
       </header>
       </div>
     </div>
 
-    <div class="about-section">
+    <div id="About" class="about-section">
       <div class="icons">
         <iconify-icon icon="game-icons:whisk"></iconify-icon>
         <iconify-icon icon="game-icons:flour"></iconify-icon>
@@ -63,7 +55,7 @@
 
       <div class="posts">
         <div class="post">
-          <img src="{{ url_for('static', filename='/images/cake-0.jpg') }}" alt="Chocolate cupcakes">
+          <img src="{{ url_for('static', filename='/images/cakes/cake-0.jpg') }}" alt="Chocolate cupcakes">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -71,7 +63,7 @@
           </div>
         </div>
         <div class="post lower-image">
-          <img src="{{ url_for('static', filename='/images/pie-0.jpg') }}" alt="Pumpkin pie">
+          <img src="{{ url_for('static', filename='/images/pies/pie-0.jpg') }}" alt="Pumpkin pie">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -79,7 +71,7 @@
           </div>
         </div>
         <div class="post">
-          <img src="{{ url_for('static', filename='/images/pastry-0.jpg') }}" alt="Croissant">
+          <img src="{{ url_for('static', filename='/images/pastries/pastry-0.jpg') }}" alt="Croissant">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -87,7 +79,7 @@
           </div>
         </div>
         <div class="post lower-image">
-          <img src="{{ url_for('static', filename='/images/fd-0.jpg') }}" alt="Fancy desert">
+          <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-0.jpg') }}" alt="Fancy desert">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>

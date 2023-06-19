@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {% include 'icon.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/shop-style.css') }}">
     <title>Shop-Joyous Treats</title>
-</head>
-<body>
+  </head>
+  <body>
 
-</body>
+    {% include 'nav.html' %}
+
+    <div class="products">
+        <h1>PRODUCTS</h1>
+    </div>
+
+    <div class="items">
+        <div class="item">
+            <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake">
+        </div>
+        <div class="item lower-item">
+            <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
+        </div>
+        <div class="item">
+            <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
+        </div>
+        <div class="item lower-item">
+            <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
+        </div>
+    </div>
+  </body>
+  <footer>
+
+    {% include 'footer.html' %}
+
+  </footer>
 </html>

@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Old Standard TT", serif;
+    scroll-behavior: smooth;
+  }
+
+  /* body properties */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #d9d9d9;
+  }
+
+  .products h1 {
+    text-align: center;
+    margin-top: 10rem;
+    color: #1f3a48;
+  }
+
+  .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .item {
+    position: relative;
+    margin: 10px;
+  }
+
+  .item img {
+    width: 250px;
+    height: 440px;
+  }
+
+  .lower-item {
+    margin-top: 15rem;
+    margin-bottom: 5rem;
+  }

@@ -4,12 +4,12 @@
   margin: 0;
   padding: 0;
   font-family: "Old Standard TT", serif;
-  /* overflow-x: hidden; */
+  scroll-behavior: smooth;
 }
 
 /* header properties: background image */
 header {
-  background-image: url("/static/images/bg.jpg");
+  background-image: url("/static/images/home-page/bg.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -28,9 +28,8 @@ body {
 /* navigation bar properties */
 .topnav {
   position: fixed;
-  top: 0px;
+  top: -20px;
   transition: top 0.3s;
-  /* width: 100%; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -109,7 +108,7 @@ a {
   position: absolute;
   transform: translate(-50%, -50%);
   text-align: center;
-  top: 50%;
+  top: 65%;
   left: 50%;
 }
 
@@ -133,7 +132,7 @@ a {
 .welcome-text p {
   color: #fff;
   font-style: italic;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 /* details of the about section */

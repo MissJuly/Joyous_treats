@@ -13,6 +13,10 @@ def home():
 def shop():
     return render_template('shop.html')
 
+@app.route("/shop/category")
+def category():
+    return render_template('category.html')
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
