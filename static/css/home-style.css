@@ -9,7 +9,7 @@
 
 /* header properties: background image */
 header {
-  background-image: url("images/bg.jpg");
+  background-image: url("/static/images/bg.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -66,18 +66,18 @@ a {
   align-items: center;
 }
 
-.nav-buttons i {
+.nav-buttons iconify-icon {
   color: #402203;
-  font-size: 16px;
+  font-size: 18px;
   margin: 1rem;
 }
 
-.nav-buttons i:hover {
+.nav-buttons iconify-icon:hover {
   font-weight: bolder;
   padding-bottom: 2px;
 }
 
-.nav-buttons .fa-bars {
+.nav-buttons .menu-bars {
   border: 1px solid #402203;
   border-radius: 5px;
   padding: 5px;
@@ -312,14 +312,22 @@ footer {
 
 .bottom-nav {
   padding: 5rem;
-}
-
-.bottom-nav p:nth-child(1) {
-  font-style: italic;
-  color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
 }
 
 .bottom-nav p {
+  font-style: italic;
+  color: #d9d9d9;
+  padding-bottom: 1rem;
+}
+
+.go-to {
+  display: flex;
+  flex-direction: column;
+}
+.go-to a {
+  text-decoration: none;
   padding-bottom: 1rem;
   color: #987654;
 }

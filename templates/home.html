@@ -4,15 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
+
+      {% include 'icon.html' %}
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/home-style.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,41 +15,17 @@
       rel="stylesheet"
     />
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/1c74dbec8e.js"
-      crossorigin="anonymous"
-    ></script>
     <title>Joyous Treats</title>
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <nav class="topnav">
-          <div class="logo">
-            <a href="#"><img src="images/logo.png" alt="logo" /></a>
-          </div>
 
-          <div class ="nav-area">
-            <ul class="nav-links">
-              <li><a href="#">ABOUT</a></li>
-              <li><a href="#">SHOP</a></li>
-              <li><a href="#">CONTACT</a></li>
-              <li><a href="#">LOGIN</a></li>
-            </ul>
-
-            <div class="nav-buttons">
-                <a href="#"><i class="fa fa-fw fa-search"></i> </a>
-                <a href="#"><i class="fa fa-shopping-cart"></i> </a>
-                <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-          </div>
-        </nav>
+        {% include 'nav.html' %}
 
         <div class="welcome-text">
           <p>A home away from home</p>
-          <a href="#">Discover Now</a>
+          <a href="{{ url_for(shop) }}">Discover Now</a>
         </div>
       </header>
       </div>
@@ -92,7 +63,7 @@
 
       <div class="posts">
         <div class="post">
-          <img src="images/cake-0.jpg" alt="Chocolate cupcakes">
+          <img src="{{ url_for('static', filename='/images/cake-0.jpg') }}" alt="Chocolate cupcakes">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -100,7 +71,7 @@
           </div>
         </div>
         <div class="post lower-image">
-          <img src="images/pie-0.jpg" alt="Pumpkin pie">
+          <img src="{{ url_for('static', filename='/images/pie-0.jpg') }}" alt="Pumpkin pie">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -108,7 +79,7 @@
           </div>
         </div>
         <div class="post">
-          <img src="images/pastry-0.jpg" alt="Croissant">
+          <img src="{{ url_for('static', filename='/images/pastry-0.jpg') }}" alt="Croissant">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -116,7 +87,7 @@
           </div>
         </div>
         <div class="post lower-image">
-          <img src="images/fd-0.jpg" alt="Fancy desert">
+          <img src="{{ url_for('static', filename='/images/fd-0.jpg') }}" alt="Fancy desert">
           <div class="overlay">
             <a href="#" class="icon" title="Instagram posts">
                 <iconify-icon icon="bxl:instagram"></iconify-icon>
@@ -131,46 +102,8 @@
   </body>
 
   <footer>
-    <div class="footer-area">
-        <div class="connect">
-            <p>CONNECT</p>
-            <div class="social">
-                <a href="#" title="Instagram account">
-                    <iconify-icon icon="bxl:instagram"></iconify-icon>
-                </a>
-                <a href="#" title="Facebook account">
-                    <iconify-icon icon="ri:facebook-line"></iconify-icon>
-                </a>
-            </div>
-        </div>
 
-        <div class="contact-info">
-            <p>GET IN TOUCH</p>
-            <div class="call-email">
-                <p>07## ### ###</p>
-                <p>joyoustreats@gmail.com</p>
-            </div>
-        </div>
+    {% include 'footer.html' %}
 
-        <div class="address">
-            <p>LOCATION</p>
-            <div class="physical-address">
-                <iconify-icon icon="fluent:location-28-regular"></iconify-icon>
-                <p>THIKA, KENYA</p>
-            </div>
-        </div>
-
-        <div class="bottom-nav">
-            <p>NAVIGATE</p>
-            <P>ABOUT US</P>
-            <P>SHOP</P>
-            <P>CONTACT</P>
-            <P>LOGIN</P>
-        </div>
-    </div>
-
-    <div class="copyright">
-        <p>Copyright 2023, Joyous Joyous.</p>
-    </div>
   </footer>
 </html>

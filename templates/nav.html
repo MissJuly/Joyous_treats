@@ -1,0 +1,22 @@
+<nav class="topnav">
+    <div class="logo">
+      <a href="#"><img src="{{ url_for('static', filename='/images/logo.png') }}" alt="logo" /></a>
+    </div>
+
+    <div class ="nav-area">
+      <ul class="nav-links">
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="{{ url_for(shop) }}">SHOP</a></li>
+        <li><a href="#">CONTACT</a></li>
+        <li><a href="#">LOGIN</a></li>
+      </ul>
+
+      <div class="nav-buttons">
+          <a href="#"><iconify-icon icon="carbon:search"></iconify-icon></i> </a>
+          <a href="#"><iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
+          <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
+            <iconify-icon class="menu-bars" icon="ion:menu"></iconify-icon>
+          </a>
+      </div>
+    </div>
+  </nav>
