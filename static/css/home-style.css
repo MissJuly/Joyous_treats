@@ -28,7 +28,7 @@ body {
 /* navigation bar properties */
 .topnav {
   position: fixed;
-  top: -20px;
+  top: 0px;
   transition: top 0.3s;
   display: flex;
   justify-content: space-evenly;
@@ -248,12 +248,9 @@ footer {
 .footer-area {
   display: flex;
   justify-content: center;
-}
-
-.connect {
-  padding-top: 5rem;
-  padding-left: 4rem;
-  padding-right: 5rem;
+  align-items: center;
+  gap: 7rem;
+  padding: 2rem;
 }
 
 .connect p {
@@ -267,29 +264,17 @@ footer {
 }
 
 .social iconify-icon {
-  padding: 1rem;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #987654;
-}
-
-.contact-info {
-  padding: 5rem;
 }
 
 .contact-info p {
   font-style: italic;
   color: #d9d9d9;
-  padding-bottom: 1.5rem;
 }
 
 .call-email p {
-  padding-bottom: 2.4rem;
   color: #987654;
-  font-size: 20px;
-}
-
-.address {
-  padding: 5rem;
 }
 
 .address p {
@@ -298,19 +283,16 @@ footer {
 }
 
 .physical-address iconify-icon {
-  padding: 1rem;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #987654;
 }
 
 .physical-address p {
-  padding-top: 1.1rem;
   font-style: normal;
   color: #987654;
 }
 
 .bottom-nav {
-  padding: 5rem;
   display: flex;
   flex-direction: column;
 }
@@ -318,7 +300,6 @@ footer {
 .bottom-nav p {
   font-style: italic;
   color: #d9d9d9;
-  padding-bottom: 1rem;
 }
 
 .go-to {
@@ -327,7 +308,6 @@ footer {
 }
 .go-to a {
   text-decoration: none;
-  padding-bottom: 1rem;
   color: #987654;
 }
 
@@ -336,7 +316,16 @@ footer {
   text-align: center;
 }
 /* medium display styles */
-@media screen and (max-width: 850px) {
+@media only screen and (max-width: 850px) {
+  header {
+    height: auto;
+    min-height: 100vh;
+    background-position: top;
+  }
+
+  .logo img {
+    width: 50%;
+  }
   .topnav {
     padding: 1rem;
   }
@@ -344,17 +333,29 @@ footer {
     display: none;
   }
 
-  .nav-buttons .fa-bars {
-    display: unset;
+  .nav-buttons {
+    display: none;
   }
+
+  .nav-buttons.responsive .menu-bars  {
+    /* display: unset; */
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .nav-buttons.responsive .menu-bars {
+    text-align: right;
+  }
+
   .about-section {
     flex-direction: column;
     margin: 0 2rem;
-
   }
 
   .about {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
 
   .about h2 {
@@ -373,6 +374,10 @@ footer {
     margin-right: 2rem;
   }
 
+  .icons iconify-icon {
+    font-size: 6rem;
+  }
+
   .posts {
     display: flex;
     max-width: 1200px;
@@ -381,10 +386,6 @@ footer {
     justify-content: center;
     /* padding: 2rem; */
   }
-
-}
-
-@media (max-width: 768px) {
   .footer-area {
     flex-direction: column;
   }
@@ -393,4 +394,10 @@ footer {
     flex-basis: auto;
     margin-bottom: 1rem;
   }
+
+}
+
+@media only screen and (max-width: 425px) {
+
+
 }

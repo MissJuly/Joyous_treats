@@ -13,7 +13,91 @@
     {% include 'nav.html' %}
 
     <div class="products">
+        <p>Shop by Category</p>
         <h1>PRODUCTS</h1>
+
+    </div>
+
+    <!--  -->
+
+    <div class="items">
+        <div class="item">
+            <a href="#" class="item-link" data-replace="CAKES"><span>CAKES</span></a>
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake" class="animated-image" id="image1">
+            </div>
+        </div>
+        <div class="item">
+            <a href="#" class="item-link" data-replace="PIES"><span>PIES</span></a>
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies" class="animated-image" id="image2">
+            </div>
+        </div>
+        <div class="item">
+            <a href="#" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a>
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
+            </div>
+        </div>
+        <div class="item">
+            <a href="#" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a>
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+    </div>
+
+
+
+    <!-- <div class="products">
+        <h1>PRODUCTS</h1>
+    </div>
+
+    <div class="group-item">
+        <a href="#">CAKES</a>
+        <a href="#">PIES</a>
+        <a href="#">PASTRIES</a>
+        <a href="#">FANCY DESSERTS</a>
+    </div>
+
+    <div class="items">
+        <div class="item">
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake">
+            </div>
+            <div class="text">Tall Fancy Cake</div>
+        </div>
+        <div class="item lower-item">
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
+            </div>
+            <div class="text">Mini Chocolate Pies</div>
+        </div>
+        <div class="item">
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
+            </div>
+            <div class="text">Fancy Croissant</div>
+        </div>
+        <div class="item lower-item">
+            <div class="image">
+                <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
+            </div>
+            <div class="text">Pumpkin Treats</div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="products">
+        <h1>PRODUCTS</h1>
+    </div>
+
+    <div class="group-item">
+        <a href="#">CAKES</a>
+        <a href="#">PIES</a>
+        <a href="#">PASTRIES</a>
+        <a href="#">FANCY DESSERTS</a>
     </div>
 
     <div class="items">
@@ -30,7 +114,7 @@
             <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
         </div>
     </div>
-  </body>
+  </body> -->
   <footer>
 
     {% include 'footer.html' %}

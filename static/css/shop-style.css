@@ -1,44 +1,122 @@
 @charset "utf-8";
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Old Standard TT", serif;
-    scroll-behavior: smooth;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: "Old Standard TT", serif;
+  scroll-behavior: smooth;
+}
 
-  /* body properties */
+/* body properties */
 body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background-color: #d9d9d9;
-  }
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #d9d9d9;
+}
 
-  .products h1 {
-    text-align: center;
+.products {
     margin-top: 10rem;
+}
+.products h1 {
+  text-align: center;
+  color: #1f3a48;
+  padding: 1rem;
+}
+
+.products p {
+    text-align: center;
     color: #1f3a48;
-  }
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 100;
+}
+.items {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* flex-wrap: wrap; */
+  gap: 2rem;
+  padding: 0 2rem;
+}
 
-  .items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.item {
+  position: relative;
+  /* margin: 10px; */
+  padding-bottom: 3rem;
+  text-align: center;
+}
 
-  }
+.item .image {
+  text-align: center;
+}
 
-  .item {
-    position: relative;
-    margin: 10px;
-  }
+.item img {
+  width: 100%;
+  height: 440px;
+}
 
-  .item img {
-    width: 250px;
-    height: 440px;
-  }
+.item .item-link {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #1f3a48;
+}
 
-  .lower-item {
-    margin-top: 15rem;
-    margin-bottom: 5rem;
-  }
+.item a {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.item a::before,
+.item a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.item a::before {
+  background-color: #987654;
+  height: 1px;
+  bottom: 0;
+  transform-origin: 100% 50%;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.item a::after {
+  content: attr(data-replace);
+  height: 100%;
+  top: 0;
+  transform-origin: 100% 50%;
+  transform: translate3d(200%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  color: #987654;
+  font-style: italic;
+}
+
+.item a:hover::before {
+  transform-origin: 0% 50%;
+  transform: scaleX(1);
+}
+
+.item a:hover::after {
+  transform: translate3d(0, 0, 0);
+}
+
+.item a span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.item a:hover span {
+  transform: translate3d(-200%, 0, 0);
+}
+
+
+@media only screen and (max-width: 850px) {
+    .items {
+        flex-wrap: wrap;
+    }
+}
