@@ -22,99 +22,65 @@
 
     <div class="items">
         <div class="item">
-            <a href="#" class="item-link" data-replace="CAKES"><span>CAKES</span></a>
-            <div class="image">
+            <h2><a href="#" class="item-link" data-replace="CAKES"><span>CAKES</span></a></h2>
+            <div class="image" onmousemove="moveOverlay(event)">
                 <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake" class="animated-image" id="image1">
+                <div class="overlay">
+                    <h3>* Tall Fancy Cake  -  Ksh 4,500</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Tall Fancy Cake</span><br>Ksh 4,500</h4>
+                <button class="button"><span>Add to cart </span></button>
             </div>
         </div>
+
         <div class="item">
-            <a href="#" class="item-link" data-replace="PIES"><span>PIES</span></a>
-            <div class="image">
+            <h2><a href="#" class="item-link" data-replace="PIES"><span>PIES</span></a></h2>
+            <div class="image" onmousemove="moveOverlay(event)">
                 <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies" class="animated-image" id="image2">
+                <div class="overlay">
+                    <h3>* Mini Chocolate Pies   -  Ksh 650</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Mini Chocolate Pies</span><br>Ksh 650</h4>
+                <button class="button"><span>Add to cart </span></button>
             </div>
         </div>
+
         <div class="item">
-            <a href="#" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a>
-            <div class="image">
+           <h2><a href="#" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a></h2>
+            <div class="image" onmousemove="moveOverlay(event)">
                 <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
+                <div class="overlay">
+                    <h3>* Croissant  -  Ksh 200</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Croissant</span><br>Ksh 200</h4>
+                <button class="button"><span>Add to cart </span></button>
             </div>
         </div>
+
         <div class="item">
-            <a href="#" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a>
-            <div class="image">
+            <h2><a href="#" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a></h2>
+            <div class="image" onmousemove="moveOverlay(event)">
                 <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
+                <div class="overlay">
+                    <h3>* Pumpkin Treats  -  Ksh 150</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Pumpkin Treats</span><br>Ksh 150</h4>
+                <button class="button"><span>Add to cart </span></button>
             </div>
         </div>
+
         <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+
     </div>
 
-
-
-    <!-- <div class="products">
-        <h1>PRODUCTS</h1>
-    </div>
-
-    <div class="group-item">
-        <a href="#">CAKES</a>
-        <a href="#">PIES</a>
-        <a href="#">PASTRIES</a>
-        <a href="#">FANCY DESSERTS</a>
-    </div>
-
-    <div class="items">
-        <div class="item">
-            <div class="image">
-                <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake">
-            </div>
-            <div class="text">Tall Fancy Cake</div>
-        </div>
-        <div class="item lower-item">
-            <div class="image">
-                <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
-            </div>
-            <div class="text">Mini Chocolate Pies</div>
-        </div>
-        <div class="item">
-            <div class="image">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
-            </div>
-            <div class="text">Fancy Croissant</div>
-        </div>
-        <div class="item lower-item">
-            <div class="image">
-                <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
-            </div>
-            <div class="text">Pumpkin Treats</div>
-        </div>
-    </div> -->
-
-
-    <!-- <div class="products">
-        <h1>PRODUCTS</h1>
-    </div>
-
-    <div class="group-item">
-        <a href="#">CAKES</a>
-        <a href="#">PIES</a>
-        <a href="#">PASTRIES</a>
-        <a href="#">FANCY DESSERTS</a>
-    </div>
-
-    <div class="items">
-        <div class="item">
-            <img src="{{ url_for('static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake">
-        </div>
-        <div class="item lower-item">
-            <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
-        </div>
-        <div class="item">
-            <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
-        </div>
-        <div class="item lower-item">
-            <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
-        </div>
-    </div>
-  </body> -->
   <footer>
 
     {% include 'footer.html' %}

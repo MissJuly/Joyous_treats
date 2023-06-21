@@ -13,9 +13,9 @@ def home():
 def shop():
     return render_template('shop.html')
 
-@app.route("/shop/category")
+@app.route("/shop/cakes")
 def category():
-    return render_template('category.html')
+    return render_template('cakes.html')
 
 
 if __name__ == "__main__":

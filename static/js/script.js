@@ -1,19 +1,10 @@
-// Get references to the animated image elements
-var image1 = document.getElementById('image1');
-var image2 = document.getElementById('image2');
+// //adds title overlay effect on images with mouse movement
 
-// Register event listener for cursor movement
-document.addEventListener('mousemove', handleMouseMove);
-
-// Function to handle cursor movement
-function handleMouseMove(event) {
-    // Get cursor coordinates
-    var mouseX = event.clientX;
-    var mouseY = event.clientY;
-
-    // Update image positions based on cursor movement
-    image1.style = mouseX + 'px';
-    image1.style = mouseY + 'px';
-    image2.style = -mouseX + 'px';
-    image2.style = -mouseY + 'px';
+function moveOverlay(event) {
+  var container = event.currentTarget;
+  var overlay = container.querySelector(".overlay");
+  var containerRect = container.getBoundingClientRect();
+  var x = event.clientX - containerRect.left;
+  var y = event.clientY - containerRect.top;
+  overlay.style.transform = `translate(${x}px, ${y}px)`;
 }
