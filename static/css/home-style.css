@@ -1,0 +1,403 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Old Standard TT", serif;
+  scroll-behavior: smooth;
+}
+
+/* header properties: background image */
+header {
+  background-image: url("/static/images/home-page/bg.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+/* body properties */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #d9d9d9;
+}
+
+/* navigation bar properties */
+.topnav {
+  position: fixed;
+  top: 0px;
+  transition: top 0.3s;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 3rem;
+  margin: 2rem;
+  z-index: 100;
+  background-color: rgba(217, 217, 217, 0.17);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(217, 217, 217, 0.17);
+}
+
+/* all anchor tags */
+a {
+  text-decoration: none;
+}
+
+/* logo properties */
+.logo img {
+  width: 40%;
+}
+
+/* navigation links and buttons properties */
+.nav-area {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons iconify-icon {
+  color: #402203;
+  font-size: 18px;
+  margin: 1rem;
+}
+
+.nav-buttons iconify-icon:hover {
+  font-weight: bolder;
+  padding-bottom: 2px;
+}
+
+.nav-buttons .menu-bars {
+  border: 1px solid #402203;
+  border-radius: 5px;
+  padding: 5px;
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: 5;
+}
+
+.nav-links a {
+  color: #402203;
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 3rem;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.nav-links a:hover {
+  font-weight: bolder;
+  padding-bottom: 2px;
+}
+
+/* welcome area */
+.welcome-text {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  top: 65%;
+  left: 50%;
+}
+
+.welcome-text a {
+  text-align: center;
+  border: 1px solid #fff;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-top: 20px;
+  display: inline-block;
+  color: #fff;
+}
+
+.welcome-text a:hover {
+  background: #fff;
+  color: #000;
+}
+
+.welcome-text p {
+  color: #fff;
+  font-style: italic;
+  font-size: 30px;
+}
+
+/* details of the about section */
+.about-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 2rem;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.icons iconify-icon {
+  margin-bottom: 1rem;
+  color: #242424;
+  font-size: 8rem;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: auto;
+  padding: 1rem;
+  margin-left: 5rem;
+  background-color: #1f3a48;
+  box-shadow: #333;
+}
+
+.about h2 {
+  text-align: center;
+  color: #d9d9d9;
+  font-size: 4rem;
+}
+
+.about p {
+  text-align: justify;
+  color: #987654;
+  font-size: 24px;
+  margin-top: 1rem;
+  padding: 4rem;
+}
+
+/* for the gram - instagram posts*/
+.social-media {
+  justify-content: center;
+}
+
+.gram h2 {
+  text-align: center;
+  font-style: italic;
+  margin-top: 4rem;
+  color: #000;
+}
+
+.posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post {
+  position: relative;
+  margin: 10px;
+}
+
+.post img {
+  width: 250px;
+  height: 440px;
+}
+
+.lower-image {
+  margin-top: 15rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 440px;
+  background-color: rgba(26, 22, 22, 0.5);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay iconify-icon {
+  color: white;
+  font-size: 32px;
+}
+
+.post:hover .overlay {
+  opacity: 1;
+}
+
+
+.follow {
+  text-align: center;
+  padding: 3rem;
+  font-size: 20px;
+}
+
+/* footer details and properties */
+footer {
+  background-color: #1f3a48;
+}
+
+.footer-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7rem;
+  padding: 2rem;
+}
+
+.connect p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+}
+
+.social iconify-icon {
+  font-size: 1rem;
+  color: #987654;
+}
+
+.contact-info p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.call-email p {
+  color: #987654;
+}
+
+.address p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.physical-address iconify-icon {
+  font-size: 1rem;
+  color: #987654;
+}
+
+.physical-address p {
+  font-style: normal;
+  color: #987654;
+}
+
+.bottom-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-nav p {
+  font-style: italic;
+  color: #d9d9d9;
+}
+
+.go-to {
+  display: flex;
+  flex-direction: column;
+}
+.go-to a {
+  text-decoration: none;
+  color: #987654;
+}
+
+.copyright {
+  font-style: italic;
+  text-align: center;
+}
+/* medium display styles */
+@media only screen and (max-width: 850px) {
+  header {
+    height: auto;
+    min-height: 100vh;
+    background-position: top;
+  }
+
+  .logo img {
+    width: 50%;
+  }
+  .topnav {
+    padding: 1rem;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .nav-buttons.responsive .menu-bars  {
+    /* display: unset; */
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .nav-buttons.responsive .menu-bars {
+    text-align: right;
+  }
+
+  .about-section {
+    flex-direction: column;
+    margin: 0 2rem;
+  }
+
+  .about {
+    margin-left: 2rem;
+  }
+
+  .about h2 {
+    font-size: 2rem;
+  }
+
+  .about p {
+    padding: 2rem;
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3;
+    margin-right: 2rem;
+  }
+
+  .icons iconify-icon {
+    font-size: 6rem;
+  }
+
+  .posts {
+    display: flex;
+    max-width: 1200px;
+    /* width: 100%; */
+    flex-wrap: wrap;
+    justify-content: center;
+    /* padding: 2rem; */
+  }
+  .footer-area {
+    flex-direction: column;
+  }
+
+  .footer-area > div {
+    flex-basis: auto;
+    margin-bottom: 1rem;
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+
+
+}

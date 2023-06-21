@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      {% include 'icon.html' %}
+
+    <title>Joyous Treats</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+
+        {% include 'nav.html' %}
+
+        <div class="welcome-text">
+          <p>A home away from home</p>
+          <a href="/shop">Discover Now</a>
+        </div>
+      </header>
+      </div>
+    </div>
+
+    <div id="About" class="about-section">
+      <div class="icons">
+        <iconify-icon icon="game-icons:whisk"></iconify-icon>
+        <iconify-icon icon="game-icons:flour"></iconify-icon>
+        <iconify-icon icon="solar:rolling-pin-linear"></iconify-icon>
+      </div>
+
+      <div class="about">
+        <h2>About</h2>
+        <p>
+          Joyous Treats is a delightful bakery ordering website that brings the
+          joy of delicious treats right to your fingertips. From scrumptious
+          cakes, pies and pastries to heavenly cookies and bread, Joyous Treats
+          offers a wide variety of freshly baked delights to satisfy your
+          cravings. With convenient options for customization, seamless online
+          payments, and flexible delivery or pickup choices, Joyous Treats
+          ensures a delightful and hassle-free ordering experience. Indulge in
+          the joy of exceptional baked goods from the comfort of your home or
+          office with Joyous Treats.
+        </p>
+      </div>
+    </div>
+
+    <div class="social-media">
+        <div class="gram">
+            <a href="#" target="_blank">
+              <h2>@JOYOUSTREATS</h2>
+            </a>
+          </div>
+
+      <div class="posts">
+        <div class="post">
+          <img src="{{ url_for('static', filename='/images/cakes/cake-0.jpg') }}" alt="Chocolate cupcakes">
+          <div class="overlay">
+            <a href="#" class="icon" title="Instagram posts">
+                <iconify-icon icon="bxl:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+        <div class="post lower-image">
+          <img src="{{ url_for('static', filename='/images/pies/pie-0.jpg') }}" alt="Pumpkin pie">
+          <div class="overlay">
+            <a href="#" class="icon" title="Instagram posts">
+                <iconify-icon icon="bxl:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+        <div class="post">
+          <img src="{{ url_for('static', filename='/images/pastries/pastry-0.jpg') }}" alt="Croissant">
+          <div class="overlay">
+            <a href="#" class="icon" title="Instagram posts">
+                <iconify-icon icon="bxl:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+        <div class="post lower-image">
+          <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-0.jpg') }}" alt="Fancy desert">
+          <div class="overlay">
+            <a href="#" class="icon" title="Instagram posts">
+                <iconify-icon icon="bxl:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    <div class="follow">
+        <p>FOLLOW US</p>
+    </div>
+  </body>
+
+  <footer>
+
+    {% include 'footer.html' %}
+
+  </footer>
+</html>
