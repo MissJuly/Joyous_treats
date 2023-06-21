@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% include 'icon.html' %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/pies-style.css') }}">
+    <title>Pies:Shop-Joyous Treats</title>
+</head>
+
+<body>
+
+    {% include 'nav.html' %}
+
+    <div class="pie-category">
+        <h1>PIES</h1>
+        <p>A world of irresistible pie goodness... don't be shy!!!</p>
+    </div>
+
+    <div class="pies">
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-0.jpg') }}" alt="Pumpkin Pie" >
+                <div class="overlay">
+                    <h3>* Pumpkin Pie  -  Ksh 1,500</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Pumpkin Pie</span><br>Ksh 1,500</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini Chocolate Pies" >
+                <div class="overlay">
+                    <h3>* Mini Chocolate Pies -  Ksh 750</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Mini Chocolate Pies</span><br>Ksh 750</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-2.jpg') }}" alt="Mini Lemon Tarts" >
+                <div class="overlay">
+                    <h3>* Mini Lemon Tarts  - Ksh 650</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Mini Lemon Tarts</span><br>Ksh 650</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-3.jpg') }}" alt="Berry Lattice Pie" >
+                <div class="overlay">
+                    <h3>* Berry Lattice Pie  -  Ksh 2,000</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Berry Lattice Pie</span><br>Ksh 2,000</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class ="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-4.jpg') }}" alt="Peacan Pie" >
+                <div class="overlay">
+                    <h3>* Peacan Pie  -  Ksh 4,500</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Peacn pie</span><br>Ksh 4,500</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-5.jpg') }}" alt="S'more Pie" >
+                <div class="overlay">
+                    <h3>* S'more Pie  -  Ksh 3,500</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>S'more Pie</span><br>Ksh 3,500</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class ="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-6.jpg') }}" alt="Mini Pies" >
+                <div class="overlay">
+                    <h3>* Mini Pies  -  Ksh 300</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Mini Pies</span><br>Ksh 300</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-7.jpg') }}" alt="Quiche" >
+                <div class="overlay">
+                    <h3>* Quiche  -  Ksh 3,000</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Quiche</span><br>Ksh 3,000</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+        <div class="pie">
+            <div class="image" onmousemove="moveOverlay(event)">
+                <img src="{{ url_for('static', filename='/images/pies/pie-8.jpg') }}" alt="Wild Fruit Tarts" >
+                <div class="overlay">
+                    <h3>* Wild Fruit Tarts  -  Ksh 500</h3>
+                </div>
+            </div>
+            <div class="buy">
+                <h4><span>Wild Fruit Tarts</span><br>Ksh 500</h4>
+                <button class="button"><span>Add to cart </span></button>
+            </div>
+        </div>
+
+
+        <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+    </div>
+
+</body>
+
+<footer>
+
+    {% include 'footer.html' %}
+
+</footer>
+</html>

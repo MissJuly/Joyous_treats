@@ -14,8 +14,21 @@ def shop():
     return render_template('shop.html')
 
 @app.route("/shop/cakes")
-def category():
+def cakes():
     return render_template('cakes.html')
+
+@app.route("/shop/pies")
+def pies():
+    return render_template('pies.html')
+
+@app.route("/shop/pastries")
+def pastries():
+    return render_template('pastries.html')
+
+@app.route("/shop/fancy-desserts")
+def fancy_desserts():
+    return render_template('fancy-desserts.html')
+
 
 
 if __name__ == "__main__":
