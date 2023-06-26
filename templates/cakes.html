@@ -7,16 +7,19 @@
     {% include 'icon.html' %}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/cakes-style.css') }}">
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
     <title>Cakes:Shop-Joyous Treats</title>
 </head>
 
 <body>
+    <div class="container">
 
-    {% include 'nav.html' %}
+        {% include 'nav.html' %}
 
-    <div class="cake-category">
-        <h1>CAKES</h1>
-        <p>Take a walk through our cakes and be inspired to try...everything!</p>
+        <div class="cake-category">
+            <h1>CAKES</h1>
+            <p>Take a walk through our cakes and be inspired to try...everything!</p>
+        </div>
     </div>
 
     <div class="cakes">
@@ -138,7 +141,7 @@
         </div>
 
 
-        <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+
     </div>
 
 </body>
