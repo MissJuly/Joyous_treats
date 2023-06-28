@@ -6,8 +6,8 @@
 
     {% include 'icon.html' %}
 
-    <link rel="stylesheet" href="{{url_for('static', filename='/css/register-style.css')}}">
-    <script></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/register-style.css') }}">
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
     <title>Register:Joyous Treats</title>
   </head>
   <body>
@@ -19,7 +19,7 @@
       <div class="register-container">
         <div class="register-box">
           <h2>Sign up</h2>
-          <p>Create account to access your profile,order history and more</p>
+          <p>Create account to access your profile, order history and more</p>
           <form action="/register">
             <div class="input-box">
               <span class="icon"

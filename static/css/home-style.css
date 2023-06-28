@@ -110,7 +110,7 @@ a {
 /* hidden search bar */
 .search-bar {
   position: absolute;
-  top: 19.8%;
+  top: 12%;
   width: 95%;
   background-color: rgba(217, 217, 217, 0.17);
   border-radius: 10px;
@@ -119,7 +119,7 @@ a {
   -webkit-backdrop-filter: blur(7px);
   border: 1px solid rgba(217, 217, 217, 0.17);
   z-index: 100;
-  height: 14%;
+  /* height: 14%; */
   left: 2.5%;
   display: none;
 }
@@ -135,7 +135,8 @@ a {
   border: transparent;
   outline: none;
   background: transparent;
-  background-color: rgba(217, 217, 217, 0.17);
+  /* background-color: rgba(217, 217, 217, 0.17); */
+  border-bottom: 1px solid #987654;
   font-size: 20px;
   font-style: italic;
   text-align: center;
@@ -150,7 +151,8 @@ a {
 }
 
 #search-form button {
-  background-color: rgba(217, 217, 217, 0.17);
+  /* background-color: rgba(217, 217, 217, 0.17); */
+  background: none;
   border: none;
   font-size: 24px;
   color: #402203;

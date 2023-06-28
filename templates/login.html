@@ -6,8 +6,8 @@
 
     {% include 'icon.html' %}
 
-    <link rel="stylesheet" href="{{url_for('static', filename='/css/login-style.css')}}">
-    <script></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login-style.css') }}">
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
     <title>Login:Joyous Treats</title>
   </head>
   <body>
@@ -19,7 +19,7 @@
       <div class="login-container">
         <div class="login-box form">
           <h2>Login</h2>
-          <p>Login to access your profile,order history and more</p>
+          <p>Login to access your profile, order history and more</p>
           <form action="/login">
             <div class="input-box">
               <span class="icon"

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {% include 'icon.html' %}
+
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/shop-style.css') }}">
     <title>Shop-Joyous Treats</title>
   </head>
@@ -32,7 +33,7 @@
         </div>
 
         <div class="item">
-            <h2><a href="#" class="item-link" data-replace="PIES"><span>PIES</span></a></h2>
+            <h2><a href="/shop/pies" class="item-link" data-replace="PIES"><span>PIES</span></a></h2>
             <div class="image">
                 <img src="{{ url_for('static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
                 <div class="middle-text">
@@ -42,7 +43,7 @@
         </div>
 
         <div class="item">
-           <h2><a href="#" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a></h2>
+           <h2><a href="/shop/pastries" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a></h2>
             <div class="image">
                 <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
                 <div class="middle-text">
@@ -52,7 +53,7 @@
         </div>
 
         <div class="item">
-            <h2><a href="#" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a></h2>
+            <h2><a href="/shop/fancy-desserts" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a></h2>
             <div class="image">
                 <img src="{{ url_for('static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
                 <div class="middle-text">
