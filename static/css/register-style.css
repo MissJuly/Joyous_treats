@@ -11,7 +11,7 @@
 .background {
   background-image: url("/static/images/home-page/bg.jpg");
   width: 100%;
-  height: 170vh;
+  height: 190vh;
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -20,10 +20,10 @@
 
 .register-container {
   position: absolute;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 35%);
   left: 50%;
   width: 450px;
-  height: 600px;
+  height: 700px;
   background: transparent;
   background-color: rgba(217, 217, 217, 0.2);
   border: 2px solid rgba(217, 217, 217, 0.2);

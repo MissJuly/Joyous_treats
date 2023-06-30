@@ -6,14 +6,15 @@
 
     {% include 'icon.html' %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/register-style.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/css/register-style.css') }}"
+    />
     <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
     <title>Register:Joyous Treats</title>
   </head>
   <body>
-
     <div class="background">
-
       {% include 'nav.html' %}
 
       <div class="register-container">
@@ -37,11 +38,25 @@
             </div>
             <div class="input-box">
               <span class="icon"
+                ><iconify-icon icon="mdi:contact"></iconify-icon
+              ></span>
+              <input type="tel" required />
+              <label>Phone Number</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"
                 ><iconify-icon icon="bi:lock-fill"></iconify-icon
               ></span>
               <input type="password" required />
               <label>Password</label>
             </div>
+            <!-- <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="bi:lock-fill"></iconify-icon
+              ></span>
+              <input type="password" required />
+              <label>Confirm Password</label>
+            </div> -->
             <button type="submit" class="button">Create account</button>
             <div class="login">
               <p>
@@ -56,9 +71,5 @@
     </div>
   </body>
 
-  <footer>
-
-    {% include 'footer.html' %}
-
-  </footer>
+  <footer>{% include 'footer.html' %}</footer>
 </html>

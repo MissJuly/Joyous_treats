@@ -13,30 +13,30 @@ $('#search-form').submit(function(event) {
   });
 });
 
-function performSearch(searchTerm) {
-  fetch('/search?q=' + searchTerm)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      displaySearchResults(data);
-    })
-    .catch(function(error) {
-      console.log('An error occurred: ' + error);
-    });
-}
+// function performSearch(searchTerm) {
+//   fetch('/search?q=' + searchTerm)
+//     .then(function(response) {
+//       return response.json();
+//     })
+//     .then(function(data) {
+//       displaySearchResults(data);
+//     })
+//     .catch(function(error) {
+//       console.log('An error occurred: ' + error);
+//     });
+// }
 
-function displaySearchResults(results) {
-  var searchResultsDiv = document.getElementById('search-results');
-  searchResultsDiv.innerHTML = '';
+// function displaySearchResults(results) {
+//   var searchResultsDiv = document.getElementById('search-results');
+//   searchResultsDiv.innerHTML = '';
 
-  for (var i = 0; i < results.length; i++) {
-    var result = results[i];
-    var resultItem = document.createElement('div');
-    resultItem.textContent = result.title;
-    searchResultsDiv.appendChild(resultItem);
-  }
-}
+//   for (var i = 0; i < results.length; i++) {
+//     var result = results[i];
+//     var resultItem = document.createElement('div');
+//     resultItem.textContent = result.title;
+//     searchResultsDiv.appendChild(resultItem);
+//   }
+// }
 
 
 
