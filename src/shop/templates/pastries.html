@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    {% include 'icon.html' %}
+{% block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('shop.static', filename='/css/pastries-style.css') }}"
+/>
+{% endblock %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/pastries-style.css') }}">
-    <title>Pastries:Shop-Joyous Treats</title>
-</head>
+{%block title %}Pastries:Shop-{% endblock %}
 
-<body>
-
-    {% include 'nav.html' %}
-
+{% block content %}
     <div class="pastry-category">
         <h1>PASTRIES</h1>
         <p>Indulge in a symphony of flavors that will transport you to pastry paradise!!!</p>
@@ -22,7 +18,7 @@
     <div class="pastries">
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-0.jpg') }}" alt="Darnish Pastry" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-0.jpg') }}" alt="Darnish Pastry" >
                 <div class="overlay">
                     <h3>* Darnish Pastry   -  Ksh 400</h3>
                 </div>
@@ -35,7 +31,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-1.jpg') }}" alt="Croissant" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-1.jpg') }}" alt="Croissant" >
                 <div class="overlay">
                     <h3>* Croissant  -  Ksh 350</h3>
                 </div>
@@ -48,7 +44,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-2.jpg') }}" alt="Bagels" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-2.jpg') }}" alt="Bagels" >
                 <div class="overlay">
                     <h3>* Bagels  -  Ksh 250</h3>
                 </div>
@@ -61,7 +57,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-3.jpg') }}" alt="Chocolate Covered Donuts" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-3.jpg') }}" alt="Chocolate Covered Donuts" >
                 <div class="overlay">
                     <h3>* Chocolate Covered Donuts -  Ksh 50</h3>
                 </div>
@@ -74,7 +70,7 @@
 
         <div class ="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-4.jpg') }}" alt="Cannolis" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-4.jpg') }}" alt="Cannolis" >
                 <div class="overlay">
                     <h3>* Cannolis  -  Ksh 500</h3>
                 </div>
@@ -87,7 +83,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-5.jpg') }}" alt="Churros" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-5.jpg') }}" alt="Churros" >
                 <div class="overlay">
                     <h3>* Churros  -  Ksh 500</h3>
                 </div>
@@ -100,7 +96,7 @@
 
         <div class ="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-6.jpg') }}" alt="Puff Pastry" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-6.jpg') }}" alt="Puff Pastry" >
                 <div class="overlay">
                     <h3>* Puff Pastry  -  Ksh 200</h3>
                 </div>
@@ -113,7 +109,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-7.jpg') }}" alt="Cranberry Jam Pastry" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-7.jpg') }}" alt="Cranberry Jam Pastry" >
                 <div class="overlay">
                     <h3>* Cranberry Jam Pastry  -  Ksh 600</h3>
                 </div>
@@ -126,7 +122,7 @@
 
         <div class="pastry">
             <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('static', filename='/images/pastries/pastry-8.jpg') }}" alt="Chocolate Babka" >
+                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-8.jpg') }}" alt="Chocolate Babka" >
                 <div class="overlay">
                     <h3>* Chocolate Babka  -  Ksh 2,000</h3>
                 </div>
@@ -136,16 +132,6 @@
                 <button class="button"><span>Add to cart </span></button>
             </div>
         </div>
-
-
-        <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
     </div>
 
-</body>
-
-<footer>
-
-    {% include 'footer.html' %}
-
-</footer>
-</html>
+{% endblock %}

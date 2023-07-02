@@ -9,7 +9,7 @@
 
 /* header properties: background image */
 .wrapper {
-  background-image: url("/static/images/home-page/bg.jpg");
+  background-image: url("/core/static/images/home-page/bg.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -65,6 +65,10 @@ a {
   align-items: center;
 }
 
+.nav-buttons {
+  list-style: none;
+}
+
 .nav-buttons iconify-icon {
   color: #402203;
   font-size: 18px;
@@ -106,7 +110,7 @@ a {
 /* hidden search bar */
 .search-bar {
   position: absolute;
-  top: 19.8%;
+  top: 20%;
   width: 95%;
   background-color: rgba(217, 217, 217, 0.17);
   border-radius: 10px;
@@ -115,8 +119,9 @@ a {
   -webkit-backdrop-filter: blur(7px);
   border: 1px solid rgba(217, 217, 217, 0.17);
   z-index: 100;
-  height: 14%;
+  /* height: 14%; */
   left: 2.5%;
+  display: none;
 }
 
 #search-form {
@@ -127,21 +132,33 @@ a {
 
 #search-form input[type="text"] {
   width: 300px;
-  border: none;
-  background-color: rgba(217, 217, 217, 0.17);
+  border: transparent;
+  outline: none;
+  background: transparent;
+  /* background-color: rgba(217, 217, 217, 0.17); */
+  border-bottom: 1px solid #987654;
   font-size: 20px;
   font-style: italic;
   text-align: center;
+  color: #402203;
+}
+
+#search-form input:hover,
+#search-form input:active {
+  border: transparent;
+  background: transparent;
+  outline: none;
 }
 
 #search-form button {
-  background-color: rgba(217, 217, 217, 0.17);
+  /* background-color: rgba(217, 217, 217, 0.17); */
+  background: none;
   border: none;
-  /* padding-right: 5rem; */
   font-size: 24px;
   color: #402203;
 }
 
+/* welcome-text */
 .welcome-text {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -367,13 +384,24 @@ footer {
   .topnav {
     padding: 1rem;
   }
-  .nav-links {
-    display: none;
+
+  .nav-area {
+    position: fixed;
+    background: #402203a5;
+    /* height: 1024px; */
+    inset: 0 0 0 30%;
+    /* flex-direction: column; */
   }
 
-  /* .nav-buttons {
-    display: none;
-  } */
+  .nav-links {
+    flex-direction: column;
+    /* display: none; */
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    /* display: none; */
+  }
 
   .nav-buttons.responsive .menu-bars {
     /* display: unset; */
