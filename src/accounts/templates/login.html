@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('accounts.static', filename='/css/login-style.css') }}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="background">
+      <div class="login-container">
+        <div class="login-box form">
+          <h2>Login</h2>
+          <p>Login to access your profile, order history and more</p>
+          <form role="form" method="POST" action="">
+            {{ form.csrf_token }}
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="ic:baseline-email"></iconify-icon
+              ></span>
+              {{ form.email(placeholder="Email", required=True) }}
+              <!-- {{ form.email.label }} -->
+              {% if form.email.errors %}
+                  {% for error in form.email.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="bi:lock-fill"></iconify-icon
+              ></span>
+              {{ form.password(placeholder="Password", required=True) }}
+              <!-- {{ form.password.label }} -->
+              {% if form.password.errors %}
+                  {% for error in form.password.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="remember">
+              <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="button">Login</button>
+            <div class="register">
+              <p>
+                Don't have an account? <a href="{{ url_for('accounts.register') }}" class="register-link"
+                  >Register</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+ {% endblock %}

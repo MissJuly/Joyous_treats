@@ -9,21 +9,21 @@
 
 /* header properties: background image */
 .background {
-  background-image: url("/static/images/home-page/bg.jpg");
+  background-image: url("/core/static/images/home-page/bg.jpg");
   width: 100%;
-  height: 170vh;
+  height: 190vh;
   background-size: cover;
   background-position: center center;
   position: relative;
   opacity: 5;
 }
 
-.login-container {
+.register-container {
   position: absolute;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 35%);
   left: 50%;
   width: 450px;
-  height: 550px;
+  height: 750px;
   background: transparent;
   background-color: rgba(217, 217, 217, 0.2);
   border: 2px solid rgba(217, 217, 217, 0.2);
@@ -37,23 +37,24 @@
   align-items: center;
 }
 
-.login-box {
+.register-box {
   width: 100%;
   padding: 40px;
 }
 
-.login-box h2 {
+.register-box h2 {
   font-size: 2em;
   color: #987654;
   text-align:center;
 }
 
-.login-box p {
+.register-box p {
     font-size: 1.2em;
     padding: 1rem;
     color: #d9d9d9;
     text-align: center;
 }
+
 .input-box {
     position: relative;
     width: 100%;
@@ -99,26 +100,6 @@
     line-height: 57px;
 }
 
-.remember {
-    font-size: .9rem;
-    color: #d9d9d9;
-    font-weight: 500;
-    margin: -15px 0 15px;
-    display: flex;
-    justify-content: space-between;
-    text-transform: uppercase;
-}
-
-
-.remember a {
-    color: #987654;
-    text-decoration: none;
-}
-
-.remember a:hover {
-    text-decoration: underline;
-}
-
 
 .button {
     width: 100%;
@@ -132,16 +113,16 @@
     color: #987654;
 }
 
-.register {
+.login {
     font-size: .9rem;
     margin: 25px 0 10px;
 }
 
-.register a {
+.login a {
     color: #402203;
     text-decoration: none;
 }
 
-.register a:hover {
+.login a:hover {
     text-decoration: underline;
 }

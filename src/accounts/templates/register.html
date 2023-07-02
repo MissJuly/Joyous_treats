@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('accounts.static', filename='/css/register-style.css') }}"
+/>
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="background">
+      <div class="register-container">
+        <div class="register-box">
+          <h2>Sign up</h2>
+          <p>Create account to access your profile, order history and more</p>
+          <form role="form" action="" method="POST">
+            {{ form.csrf_token }}
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="wpf:name"></iconify-icon>
+              </span>
+              {{ form.name(placeholder="Name", required=True) }}
+              <!-- {{ form.name.label }} -->
+              {% if form.name.errors %}
+                  {% for error in form.name.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="ic:baseline-email"></iconify-icon
+              ></span>
+              {{ form.email(placeholder="Email", required=True) }}
+              <!-- {{ form.email.label }} -->
+              {% if form.email.errors %}
+                  {% for error in form.email.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="mdi:contact"></iconify-icon
+              ></span>
+              {{ form.phone_number(placeholder="Phone number") }}
+              <!-- {{ form.phone_number.label }} -->
+              {% if form.phone_number.errors %}
+                  {% for error in form.phone_number.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="bi:lock-fill"></iconify-icon
+              ></span>
+              {{ form.password(placeholder="Password", required=True) }}
+              <!-- {{ form.password.label }} -->
+              {% if form.password.errors %}
+                  {% for error in form.password.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <div class="input-box">
+              <span class="icon"
+                ><iconify-icon icon="bi:lock-fill"></iconify-icon
+              ></span>
+              {{ form.confirm(placeholder="Confirm Password", required=True) }}
+              <!-- {{ form.confirm.label }} -->
+              {% if form.confirm.errors %}
+                  {% for error in form.confirm.errors %}
+                  <div class="error-message">
+                    {{ error }}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+            </div>
+            <button type="submit" class="button">Create account</button>
+            <div class="login">
+              <p>
+                Already have an account? <a href="{{ url_for('accounts.login') }}" class="login-link"
+                  >Login</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}

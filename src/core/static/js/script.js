@@ -46,7 +46,6 @@ $('#search-form').submit(function(event) {
 
 
 //adds title overlay effect on images with mouse movement
-
 function moveOverlay(event) {
   var container = event.currentTarget;
   var overlay = container.querySelector(".overlay");
