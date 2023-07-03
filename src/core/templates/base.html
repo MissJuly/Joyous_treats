@@ -82,7 +82,7 @@
         <main>
         {% block content %}{% endblock %}
         </main>
-        
+
         <!-- footer -->
         <footer>
           <div class="footer-area" id="Contact">
@@ -117,9 +117,9 @@
                   <p>NAVIGATE</p>
                   <div class="go-to">
                     <a href="#About">ABOUT US</a>
-                    <a href="/shop">SHOP</a>
+                    <a href="{{ url_for('shop.shop') }}">SHOP</a>
                     <a href="#">CONTACT</a>
-                    <a href="#">LOGIN</a>
+                    <a href="{{ url_for('accounts.login') }}">LOGIN</a>
                   </div>
               </div>
           </div>

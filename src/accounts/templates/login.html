@@ -19,7 +19,6 @@
                 ><iconify-icon icon="ic:baseline-email"></iconify-icon
               ></span>
               {{ form.email(placeholder="Email", required=True) }}
-              <!-- {{ form.email.label }} -->
               {% if form.email.errors %}
                   {% for error in form.email.errors %}
                   <div class="error-message">
@@ -33,7 +32,6 @@
                 ><iconify-icon icon="bi:lock-fill"></iconify-icon
               ></span>
               {{ form.password(placeholder="Password", required=True) }}
-              <!-- {{ form.password.label }} -->
               {% if form.password.errors %}
                   {% for error in form.password.errors %}
                   <div class="error-message">
@@ -42,7 +40,7 @@
                   {% endfor %}
                   {% endif %}
             </div>
-            <div class="remember">
+            <div class="forgot">
               <a href="#">Forgot Password?</a>
             </div>
             <button type="submit" class="button">Login</button>
