@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template
+from functools import wraps
+
 
 
 # Create a Blueprint for the shop section of the website
@@ -37,3 +39,6 @@ def fancy_desserts():
 # @shop_bp.route("")
 # def :
 #     return render_template('')
+
+
+

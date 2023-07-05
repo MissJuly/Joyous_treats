@@ -17,7 +17,7 @@ class RegisterForm(FlaskForm):
     def validate(self, extra_validators=None):
         # Perform initial validation using the built-in FlaskForm validation
         initial_validation = super(RegisterForm, self).validate(extra_validators)
-        if not initial_validation:   #If initial validation fails, return False
+        if not initial_validation:   # If initial validation fails, return False
             return False
 
         # Check if a user with the provided email already exists in the database

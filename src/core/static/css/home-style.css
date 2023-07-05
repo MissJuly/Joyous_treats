@@ -436,7 +436,7 @@ footer {
   /* Adjust navigation area for medium displays */
   .nav-area {
     position: absolute;
-    background: #40220396;
+    background: #1f3a48;
     inset: 0 0 0 15%;
     height: 100vh;
     flex-direction: column;

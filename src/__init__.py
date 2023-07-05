@@ -35,6 +35,9 @@ app.register_blueprint(shop_bp)
 # Import the User model from accounts module
 from src.accounts.models import User
 
+# Import the Product model from shop module
+from src.shop.models import Product
+
 # Define a function to load a user based on its user_id
 @login_manager.user_loader
 def load_user(user_id):

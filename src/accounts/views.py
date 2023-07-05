@@ -1,12 +1,26 @@
 from datetime import datetime
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_user, login_required, logout_user
+from functools import wraps
 
 from src import bcrypt, db
 from src.accounts.models import User
+from src.shop.models import Order, Product
+from src.shop.forms import ProductForm
 
 from .forms import LoginForm, RegisterForm
 
+
+
+def fetch_registered_users():
+    # Use SQLAlchemy query to fetch all registered users from database
+    users = User.query.all()
+    return users
+
+# def fetch_order():
+#     # Use SQLAlchemy query to fetch all orders from the databse
+#     orders = Order.query.all()
+#     return orders
 
 # Create a Blueprint for the accounts module
 accounts_bp = Blueprint(
@@ -27,7 +41,7 @@ def register():
     # Create a form object from the RegisterForm class
     form = RegisterForm(request.form)
 
-    # Check is the form has been submitted and is valid
+    # Check if the form has been submitted and is valid
     if form.validate_on_submit():
         # Get current timestamp
         current_time = datetime.now()
@@ -40,7 +54,7 @@ def register():
                     created_at=current_time,
                     updated_at=current_time)
 
-        # Add the new user to the adtabase and commit the changes
+        # Add the new user to the database and commit the changes
         db.session.add(user)
         db.session.commit()
 
@@ -74,8 +88,16 @@ def login():
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
             # Log in the user
             login_user(user)
-            # Redirect the user to the homepage
-            return redirect(url_for("core.home"))
+
+            # Set custom session variable
+            session["user_id"] = user.id
+
+            # Redirect the user to the appropriate page
+            flash("Login successful!", "success")
+            if user.is_admin:
+                return redirect(url_for("accounts.admin_dashboard"))
+            else:
+                return redirect(url_for("core.home"))
         else:
             # If the email and/or password is incorrect, show an error message
             flash("Invalid email and/or password.", "danger")
@@ -94,3 +116,54 @@ def logout():
     flash("You were logged out.", "success")
     # Redirect the user to the login page
     return redirect(url_for("accounts.login"))
+
+
+# Create custom Admin decorator
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user_id = session.get("user_id")
+        if user_id != None:
+            user = User.query.get(user_id)
+            if user.is_admin:
+                return f(*args, **kwargs)
+            flash("You need admin privileges to access this page", "danger")
+            return redirect(url_for("core.home"))
+
+        # flash("Please log in as an admin to access this page!", "danger")
+        return redirect(url_for("accounts.login"))
+    return decorated_function
+
+# Define route for admin dashboard
+@accounts_bp.route("/admin", methods=['GET', 'POST'])
+@admin_required
+def admin_dashboard():
+    users = fetch_registered_users()
+    # orders = fetch_order()
+
+    form = ProductForm()
+
+    if form.validate_on_submit():
+          # Get current timestamp
+         current_time = datetime.now()
+
+        # Process the form data
+         product = Product(product_name=form.product_name.data,
+                    category=form.category.data,
+                    description=form.description.data,
+                    price=form.price.data,
+                    image_url=form.image_url.data,
+                    availability=form.availability.data,
+                    discount=form.discount.data,
+                    created_at=current_time,
+                    updated_at=current_time)
+
+         db.session.add(product)
+         db.session.commit()
+
+         flash("Product added successfully!", "success")
+         return redirect(url_for("shop.shop"))
+
+    return render_template('admin.html', users=users, form=form)
+
+

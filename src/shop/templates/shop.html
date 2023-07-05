@@ -1,63 +1,96 @@
 {% extends "base.html" %}
-
 {% block css %}
 <link
   rel="stylesheet"
+  type="text/css"
   href="{{ url_for('shop.static', filename='/css/shop-style.css') }}"
 />
 {% endblock %}
-
 {% block title %}Shop{% endblock %}
-
 {% block content %}
-    <div class="products">
-        <p>Shop by Category</p>
-        <h1>PRODUCTS</h1>
-
+<div class="products">
+  <p>Shop by Category</p>
+  <h1>PRODUCTS</h1>
+</div>
+<div class="items">
+  <div class="item">
+    <h2>
+      <a
+        href="{{ url_for('shop.cakes') }}"
+        class="item-link"
+        data-replace="CAKES"
+        ><span>CAKES</span></a
+      >
+    </h2>
+    <div class="image">
+      <img
+        src="{{ url_for('shop.static', filename='/images/cakes/cake-1.jpg') }}"
+        alt="Tall fancy cake"
+      />
+      <div class="middle-text">
+        <h3><a href="{{ url_for('shop.cakes') }}">CAKES</a></h3>
+      </div>
     </div>
+  </div>
 
-    <!--  -->
-
-    <div class="items">
-        <div class="item">
-            <h2><a href="{{ url_for('shop.cakes') }}" class="item-link" data-replace="CAKES"><span>CAKES</span></a></h2>
-            <div class="image">
-                <img src="{{ url_for('shop.static', filename='/images/cakes/cake-1.jpg') }}" alt="Tall fancy cake" >
-                <div class="middle-text">
-                    <h3><a href="{{ url_for('shop.cakes') }}">CAKES</a></h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <h2><a href="{{ url_for('shop.pies') }}" class="item-link" data-replace="PIES"><span>PIES</span></a></h2>
-            <div class="image">
-                <img src="{{ url_for('shop.static', filename='/images/pies/pie-1.jpg') }}" alt="Mini chocolate pies">
-                <div class="middle-text">
-                    <h3><a href="{{ url_for('shop.pies') }}">PIES</a></h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-           <h2><a href="{{ url_for('shop.pastries') }}" class="item-link" data-replace="PASTRIES"><span>PASTRIES</span></a></h2>
-            <div class="image">
-                <img src="{{ url_for('shop.static', filename='/images/pastries/pastry-1.jpg') }}" alt="Fancy Croissant">
-                <div class="middle-text">
-                    <h3><a href="{{ url_for('shop.pastries') }}">PASTRIES</a></h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <h2><a href="{{ url_for('shop.fancy_desserts') }}" class="item-link" data-replace="FANCY DESSERTS"><span>FANCY DESSERTS</span></a></h2>
-            <div class="image">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats">
-                <div class="middle-text">
-                    <h3><a href="{{ url_for('shop.fancy_desserts') }}">FANCY DESSERTS</a></h3>
-                </div>
-            </div>
-        </div>
+  <div class="item">
+    <h2>
+      <a href="{{ url_for('shop.pies') }}" class="item-link" data-replace="PIES"
+        ><span>PIES</span></a
+      >
+    </h2>
+    <div class="image">
+      <img
+        src="{{ url_for('shop.static', filename='/images/pies/pie-1.jpg') }}"
+        alt="Mini chocolate pies"
+      />
+      <div class="middle-text">
+        <h3><a href="{{ url_for('shop.pies') }}">PIES</a></h3>
+      </div>
     </div>
+  </div>
+
+  <div class="item">
+    <h2>
+      <a
+        href="{{ url_for('shop.pastries') }}"
+        class="item-link"
+        data-replace="PASTRIES"
+        ><span>PASTRIES</span></a
+      >
+    </h2>
+    <div class="image">
+      <img
+        src="{{ url_for('shop.static', filename='/images/pastries/pastry-1.jpg') }}"
+        alt="Fancy Croissant"
+      />
+      <div class="middle-text">
+        <h3><a href="{{ url_for('shop.pastries') }}">PASTRIES</a></h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <h2>
+      <a
+        href="{{ url_for('shop.fancy_desserts') }}"
+        class="item-link"
+        data-replace="FANCY DESSERTS"
+        ><span>FANCY DESSERTS</span></a
+      >
+    </h2>
+    <div class="image">
+      <img
+        src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-1.jpg') }}"
+        alt="Pumpkin Treats"
+      />
+      <div class="middle-text">
+        <h3>
+          <a href="{{ url_for('shop.fancy_desserts') }}">FANCY DESSERTS</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
