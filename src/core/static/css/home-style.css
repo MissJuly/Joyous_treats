@@ -34,7 +34,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 1rem 3rem;
+  padding: 1rem;
   margin: 2rem;
   z-index: 100;
   background-color: rgba(217, 217, 217, 0.17);
@@ -97,7 +97,7 @@ a {
   display: flex;
   justify-content: space-between;
   list-style: none;
-  gap: 5;
+  gap: 6;
 }
 
 /* Styling for anchor tags within nav-links */

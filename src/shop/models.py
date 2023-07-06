@@ -1,5 +1,6 @@
 from datetime import datetime
 from src import db
+from src.accounts.models import User
 
 
 # Define the Product model class, inheriting from db.Model
@@ -22,13 +23,16 @@ class Product(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False)
 
     # Constructor for the Product class, initializing its attributes
-    def __init__(self, name, description, price, image_url=None, availability=True, discount=0.0):
+    def __init__(self, name, category, description, price, created_at, updated_at, image_url=None, availability=True, discount=0.0):
         self.name = name
+        self.category = category
         self.description = description
         self.price = price
         self.image_url = image_url
         self.availability = availability
         self.discount = discount
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     # Represent the Product object as a string for debugging and logging purposes
     def __repr__(self):
@@ -39,7 +43,7 @@ class Order(db.Model):
     """Order model to store order details"""
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
-    userid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     order_date = db.Column(db.Date)
     status = db.Column(db.Boolean)
     total_amount = db.Column(db.Float)
@@ -52,8 +56,8 @@ class OrderItem(db.Model):
     """Order item model to store order item details"""
     __tablename__ = 'order_item'
     id = db.Column(db.Integer, primary_key=True)
-    orderid = db.Column(db.Integer, db.ForeignKey('order.id'))
-    productid = db.Column(db.Integer, db.ForeignKey('product.id'))
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
     quantity = db.Column(db.Integer)
     subtotal = db.Column(db.Float)
     created_at = db.Column(db.Date)

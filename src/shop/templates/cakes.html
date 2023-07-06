@@ -16,149 +16,19 @@
 </div>
 
 <div class="cakes">
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-0.jpg') }}"
-        alt="Chocolate Cupcakes"
-      />
-      <div class="overlay">
-        <h3>* Chocolate Cupcakes - Ksh 60</h3>
+  {% for product in products %}
+    <div class="cake">
+      <div class="image" onmousemove="moveOverlay(event)">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <div class="overlay">
+          <h3>* {{ product.name }} - Ksh {{ product.price }}</h3>
+        </div>
+      </div>
+      <div class="buy">
+        <h4><span>{{ product.name }}</span><br />Ksh {{ product.price }}</h4>
+        <button class="button"><span>Add to cart</span></button>
       </div>
     </div>
-    <div class="buy">
-      <h4><span>Chocolate Cupcakes</span><br />Ksh 60</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-1.jpg') }}"
-        alt="Oreo Cake"
-      />
-      <div class="overlay">
-        <h3>* Oreo Cake - Ksh 4,500</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Oreo Cake</span><br />Ksh 4,500</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-2.jpg') }}"
-        alt="Vanilla Cake"
-      />
-      <div class="overlay">
-        <h3>* Vanilla Cake - Ksh 2,000</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Vanilla Cake</span><br />Ksh 2,000</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-3.jpg') }}"
-        alt="Redvelvet Cupcakes"
-      />
-      <div class="overlay">
-        <h3>* Redvelvet Cupcakes - Ksh 50</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Redvelvet Cupcakes</span><br />Ksh 50</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-4.jpg') }}"
-        alt="Pumpkin Cupcakes"
-      />
-      <div class="overlay">
-        <h3>* Pumpkin Cupcakes - Ksh 50</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Pumpkin Cupcakes</span><br />Ksh 50</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-5.jpg') }}"
-        alt="Cake With Blueberries"
-      />
-      <div class="overlay">
-        <h3>* Cake with Blueberries - Ksh 3,500</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Cake with Blueberries</span><br />Ksh 3,500</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-6.jpg') }}"
-        alt="Chocolate Cake"
-      />
-      <div class="overlay">
-        <h3>* Chocolate Cake - Ksh 2,500</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Chocolate Cake</span><br />Ksh 2,500</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-7.jpg') }}"
-        alt="Tropical Fruit Cake"
-      />
-      <div class="overlay">
-        <h3>* Tropical Fruit Cake - Ksh 4,500</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Tropical Fruit Cake</span><br />Ksh 4,500</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
-
-  <div class="cake">
-    <div class="image" onmousemove="moveOverlay(event)">
-      <img
-        src="{{ url_for('shop.static', filename='/images/cakes/cake-8.jpg') }}"
-        alt="Two-tiered Cake"
-      />
-      <div class="overlay">
-        <h3>* Two-tiered Cake - Ksh 9,500</h3>
-      </div>
-    </div>
-    <div class="buy">
-      <h4><span>Two-tiered Cake</span><br />Ksh 9,500</h4>
-      <button class="button"><span>Add to cart </span></button>
-    </div>
-  </div>
+  {% endfor %}
 </div>
-
 {% endblock %}

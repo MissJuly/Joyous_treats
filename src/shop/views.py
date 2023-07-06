@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from functools import wraps
+from src.shop.models import Product
 
 
 
@@ -19,22 +20,26 @@ def shop():
 # Define a route for the cakes page
 @shop_bp.route("/shop/cakes")
 def cakes():
-    return render_template('cakes.html')
+    products = Product.query.filter_by(category='cakes').all()
+    return render_template('cakes.html', products=products)
 
 # Define a route for the pies page
 @shop_bp.route("/shop/pies")
 def pies():
-    return render_template('pies.html')
+    products = Product.query.filter_by(category='pies').all()
+    return render_template('pies.html', products=products)
 
 # Define a route for the pastries page
 @shop_bp.route("/shop/pastries")
 def pastries():
-    return render_template('pastries.html')
+    products = Product.query.filter_by(category='pastries').all()
+    return render_template('pastries.html', products=products)
 
 # Define a route for the fancy desserts page
 @shop_bp.route("/shop/fancy-desserts")
 def fancy_desserts():
-    return render_template('fancy-desserts.html')
+    products = Product.query.filter_by(category='fancy desserts').all()
+    return render_template('fancy-desserts.html', products=products)
 
 # @shop_bp.route("")
 # def :

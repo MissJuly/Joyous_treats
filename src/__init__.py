@@ -25,10 +25,13 @@ migrate = Migrate(app, db)
 
 # Registering blueprints for different parts of the application
 from src.accounts.views import accounts_bp
+from src.admin.views import admin_bp
 from src.core.views import core_bp
 from src.shop.views import shop_bp
 
+
 app.register_blueprint(accounts_bp)
+app.register_blueprint(admin_bp)
 app.register_blueprint(core_bp)
 app.register_blueprint(shop_bp)
 
