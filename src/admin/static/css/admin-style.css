@@ -10,40 +10,62 @@
 }
 
 .background {
-  height: 150vh;
-  /* background: transparent; */
-  border: 0.5px solid rgba(45, 29, 6, 0.2);
-  background-color: #2E576C;
-
+  /* background-image: url("/admin/static/images/bg-3.jpg"); */
+  /* height: 200vh; */
   background-size: cover;
-  background-position: center center;
-  position: relative;
-  /* box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); */
+  width: 100%;
+  background-position: center;
+
+}
+
+.admin-container {
+  padding: 10rem 2rem 5rem 2rem;
 }
 .admin {
-  position: absolute;
-  left: 80%;
-  margin-top: 10rem;
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
- .admin p {
-    color: #d9d9d9;
- }
+.admin p {
+  color: #402203;
+}
 .admin a {
-    color: #402203;
+  color: #402203;
 }
 .users {
-  margin-top: 10rem;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  /* color: #d9d9d9; */
 }
 
 .orders {
-  margin-top: 3rem;
-}
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 
+  /* color: #d9d9d9; */
+}
+.shop {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  gap: 3rem;
+}
 .products-form {
-  position: absolute;
-  left: 65%;
-  transform: translate(-20%, -20%);
-  width: 450px;
+  padding: 1.5rem;
+  width: 300px;
   height: 450px;
   background: transparent;
   background-color: rgba(217, 217, 217, 0.2);
@@ -51,39 +73,37 @@
   border-radius: 10px;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .input-box {
-  width: 100%;
-  padding: 40px;
-  margin-top: 50px;
+  /* width: 100%; */
 }
 
 .products-form h2 {
-    top: 5%;
-    left: 32%;
-    position: absolute;
-    text-align: center;
-    padding: 20px;
-    font-size: 2em;
-    color: #987654;
+  text-align: center;
+  font-size: 2em;
+  color: #987654;
 }
 
 .input-box label {
-    color: #402203;
+  color: #402203;
 }
 
 .input-box input {
-    background: #d9d9d9;
-    font-size: 16px;
+  background: #d9d9d9;
+  font-size: 16px;
 }
 
- .available h4 {
+.available h4 {
   text-transform: uppercase;
 }
 .available {
-  /* display: flex; */
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  /* color: #d9d9d9; */
 }

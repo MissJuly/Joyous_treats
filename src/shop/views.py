@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template
-from functools import wraps
+from flask import Blueprint, render_template, jsonify
 from src.shop.models import Product
 
 
@@ -45,5 +44,46 @@ def fancy_desserts():
 # def :
 #     return render_template('')
 
+# Api routes
+# Retrieve a list of available bakery products
+@shop_bp.route('/api/products', methods=['GET'])
+def get_products():
+    products = Product.query.all()
+    product_list = []
 
+    for product in products:
+        product_data = {
+            'id': product.id,
+            'name': product.name,
+            'category': product.category,
+            'description': product.description,
+            'price': product.price,
+            'image_url': product.image_url,
+            'availability': product.availability,
+            'discount': product.discount
+        }
+        product_list.append(product_data)
+
+    return jsonify(product_list)
+
+# Fetch details about a specific product by providing its unique identifier
+@shop_bp.route('/api/products/<int:product_id>', methods=['GET'])
+def get_product(product_id):
+    product = Product.query.get(product_id)
+
+    if product is None:
+        return jsonify({'error': 'Product not found'}), 404
+
+    product_data = {
+            'id': product.id,
+            'name': product.name,
+            'category': product.category,
+            'description': product.description,
+            'price': product.price,
+            'image_url': product.image_url,
+            'availability': product.availability,
+            'discount': product.discount
+    }
+
+    return jsonify(product_data)
 

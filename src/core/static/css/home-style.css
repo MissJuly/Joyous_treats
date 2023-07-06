@@ -16,6 +16,7 @@
   background-size: cover;
   background-position: center center;
   position: relative;
+  opacity: 1;
 }
 
 /* Body properties */
@@ -440,7 +441,7 @@ footer {
     inset: 0 0 0 15%;
     height: 100vh;
     flex-direction: column;
-
+    display: none;
   }
 
   /* Adjust navigation links for medium displays */
