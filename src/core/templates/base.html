@@ -33,11 +33,27 @@
                 <li><a href="#About">ABOUT</a></li>
                 <li><a href="{{ url_for('shop.shop') }}">SHOP</a></li>
                 <li><a href="#Contact">CONTACT</a></li>
-                {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('accounts.logout') }}">LOG OUT</a></li>
-                {% else %}
-                <li><a href="{{ url_for('accounts.login') }}">LOGIN</a></li>
-                {% endif %}
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="myFunction()">ACCOUNT
+                      <iconify-icon icon="gridicons:dropdown"></iconify-icon>
+                    </button>
+                    <div class="dropdown-content" id="myDropdown">
+                      {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('accounts.logout') }}">
+                          <iconify-icon icon="ooui:user-avatar"></iconify-icon> LOG OUT</a>
+                      {% else %}
+                        <a href="{{ url_for('accounts.login') }}">
+                          <iconify-icon icon="ooui:user-avatar"></iconify-icon> LOGIN</a>
+                      {% endif %}
+                      {% if current_user.is_admin %}
+                        <a href="{{ url_for('admin.admin_dashboard') }}" title="dashboard">
+                          <iconify-icon icon="ri:dashboard-fill"></iconify-icon> ADMIN DASHBOARD</a>
+                      {% else %}
+                        <a href="{{ url_for('accounts.user_dashboard') }}" title="dashboard">
+                          <iconify-icon icon="ri:dashboard-fill"></iconify-icon> USER DASHBOARD</a>
+                      {% endif %}
+                    </div>
+                </div>
               </ul>
               <div class="nav-buttons">
                   <li id="search-icon">
@@ -50,6 +66,7 @@
               </div>
             </div>
           </nav>
+
 
           <!-- search bar -->
           <div id="search-overlay" class="search-bar">
@@ -127,7 +144,7 @@
                     {% if current_user.is_admin %}
                     <a href="{{ url_for('admin.admin_dashboard') }}">ADMIN DASHBOARD</a>
                     {% else %}
-                    <a href="{{ url_for('core.home') }}">HOME</a>
+                    <a href="{{ url_for('accounts.user_dashboard') }}">USER DASHBOARD</a>
                     {% endif %}
                   </div>
               </div>

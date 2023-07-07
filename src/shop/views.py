@@ -87,3 +87,5 @@ def get_product(product_id):
 
     return jsonify(product_data)
 
+# Search products in database
+

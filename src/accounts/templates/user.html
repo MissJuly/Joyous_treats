@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('accounts.static', filename='/css/user-style.css') }}"
+/>
+{% endblock %} {% block title%}User Dashboard-{% endblock %} {% block content %}
+<!-- Display user name -->
+<div class="background">
+  <div class="user-container">
+    <div class="user">
+      <p>
+        Hello, {{ current_user.name }}
+        <a href=""><iconify-icon icon="ooui:user-avatar"></iconify-icon></a>
+      </p>
+    </div>
+
+    <!-- Display Orders made -->
+    <div class="orders">
+      <h2>Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}

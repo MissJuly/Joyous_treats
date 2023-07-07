@@ -63,7 +63,7 @@ def login():
     # Check if the user is already authenticated (logged in)
     if current_user.is_authenticated:
         flash("You are already logged in.", "info")
-        return redirect(url_for("core.home"))
+        return redirect(url_for("accounts.user_dashboard"))
 
     # Create a form object from the LoginForm class
     form = LoginForm(request.form)
@@ -86,7 +86,7 @@ def login():
             if user.is_admin:
                 return redirect(url_for("admin.admin_dashboard"))
             else:
-                return redirect(url_for("core.home"))
+                return redirect(url_for("accounts.user_dashboard"))
         else:
             # If the email and/or password is incorrect, show an error message
             flash("Invalid email and/or password.", "danger")
@@ -106,4 +106,8 @@ def logout():
     # Redirect the user to the login page
     return redirect(url_for("accounts.login"))
 
-
+# Route for user dashboard
+@accounts_bp.route("/user")
+@login_required
+def user_dashboard():
+    return render_template('user.html')
