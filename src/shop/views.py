@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
+from sqlalchemy import or_
+from src import db
 from src.shop.models import Product
+from src.shop.forms import ProductForm, SearchForm
 
 
 
@@ -10,6 +13,8 @@ shop_bp = Blueprint(
     static_folder='static',
     static_url_path="/shop/static"
 )
+# Pass to base
+
 
 # Define a route for the main shop page
 @shop_bp.route("/shop")
@@ -44,9 +49,24 @@ def fancy_desserts():
 # def :
 #     return render_template('')
 
+# Search products in database
+@shop_bp.route("/search", methods=['POST', 'GET'])
+def search():
+    form = SearchForm(request.form)
+    if form.validate_on_submit():
+        search_term = form.query.data
+        # Query the products based on the search term
+        products = Product.query.filter(or_(Product.name.ilike(f"%{search_term}%"),
+                                            Product.category.ilike(f"%{search_term}%"),
+                                            Product.description.ilike(f"%{search_term}%"))).all()
+        # Render the search results template with the products
+        return render_template('search.html', form=form, products=products, search_term=search_term)
+    return render_template('search.html', form=form, products=[], search_term=search_term)
+
+    
 # Api routes
 # Retrieve a list of available bakery products
-@shop_bp.route('/api/products', methods=['GET'])
+@shop_bp.route("/api/products", methods=['GET'])
 def get_products():
     products = Product.query.all()
     product_list = []
@@ -67,7 +87,7 @@ def get_products():
     return jsonify(product_list)
 
 # Fetch details about a specific product by providing its unique identifier
-@shop_bp.route('/api/products/<int:product_id>', methods=['GET'])
+@shop_bp.route("/api/products/<int:product_id>", methods=['GET'])
 def get_product(product_id):
     product = Product.query.get(product_id)
 
@@ -87,5 +107,12 @@ def get_product(product_id):
 
     return jsonify(product_data)
 
-# Search products in database
+@shop_bp.route("/<product_category>/<product_id>")
+def detail_view(product_category, product_id):
+    # Retrieve the product from the database based on the product_name
+    product = Product.query.filter_by(product_category=product_category, product_id=product_id).first()
+
+    return render_template('detail-view.html', product=product)
+
+
 

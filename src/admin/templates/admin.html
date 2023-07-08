@@ -10,101 +10,101 @@
 
 <div class="background">
   <div class="admin-container">
-      <div class="admin">
-        <p>
-          Hello, {{ current_user.name }}
-          <a href=""><iconify-icon icon="ooui:user-avatar"></iconify-icon></a>
-        </p>
+    <div class="admin">
+      <p>
+        Hello, {{ current_user.name }}
+        <a href=""><iconify-icon icon="ooui:user-avatar"></iconify-icon></a>
+      </p>
+    </div>
+    <div class="details">
+      <div class="users">
+        <h2>Registered Users</h2>
+        <ol type="1">
+          {% for user in users %}
+          <li>
+            {{ user.name }} - {{ user.email }} : {% if user.is_admin %} Admin
+            {% else %} Member {% endif %}
+          </li>
+          {% endfor %}
+        </ol>
       </div>
-      <div class="details">
-        <div class="users">
-          <h2>Registered Users</h2>
-          <ol type="1">
-            {% for user in users %}
+
+      <!-- Display Orders made -->
+      <div class="orders">
+        <h2>Orders</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>User</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <!-- Add products section -->
+      <section class="shop">
+        <div class="products-form">
+          <h2>Products</h2>
+          <form action="/admin" method="POST">
+            {{ form.csrf_token }}
+            <div class="input-box">
+              {{ form.name.label }}<br />
+              {{ form.name() }}<br />
+              {{ form.category.label }}<br />
+              {{ form.category() }}<br />
+              {{ form.description.label }}<br />
+              {{ form.description() }}<br />
+              {{ form.price.label }}<br />
+              {{ form.price() }}<br />
+              {{ form.image_url.label }}<br />
+              {{ form.image_url() }}<br />
+              {{ form.availability.label }}<br />
+              {{ form.availability() }}<br />
+              {{ form.discount.label }}<br />
+              {{ form.discount() }}<br />
+              {{ form.submit() }}
+            </div>
+          </form>
+        </div>
+        <div class="available">
+          <h3>Available Products</h3>
+          <ul>
+            {% for category in categories %}
             <li>
-              {{ user.name }} - {{ user.email }} : {% if user.is_admin %} Admin
-              {% else %} Member {% endif %}
+              <h4>{{ category }}</h4>
+              <ul>
+                {% for product in products if product.category == category %}
+                <li>
+                  {{ product.name }} - Ksh {{ product.price }}
+                  <a
+                    href="{{ url_for('admin.edit_product', product_id=product.id) }}"
+                    >Edit</a
+                  >
+                  <a
+                    href="#"
+                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ product.id }}').submit();"
+                    >Delete</a
+                  >
+                  <form
+                    id="delete-form-{{ product.id }}"
+                    action="{{ url_for('admin.delete_product', product_id=product.id) }}"
+                    method="POST"
+                    style="display: none"
+                  >
+                    {{ csrf_token }}
+                  </form>
+                </li>
+                {% endfor %}
+              </ul>
             </li>
             {% endfor %}
-          </ol>
+          </ul>
         </div>
-
-        <!-- Display Orders made -->
-        <div class="orders">
-          <h2>Orders</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>User</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-
-        <!-- Add products section -->
-        <section class="shop">
-          <div class="products-form">
-            <h2>Products</h2>
-            <form action="/admin" method="POST">
-              {{ form.crsf_token }}
-              <div class="input-box">
-                {{ form.name.label }}<br />
-                {{ form.name() }}<br />
-                {{ form.category.label }}<br />
-                {{ form.category() }}<br />
-                {{ form.description.label }}<br />
-                {{ form.description() }}<br />
-                {{ form.price.label }}<br />
-                {{ form.price() }}<br />
-                {{ form.image_url.label }}<br />
-                {{ form.image_url() }}<br />
-                {{ form.availability.label }}<br />
-                {{ form.availability() }}<br />
-                {{ form.discount.label }}<br />
-                {{ form.discount() }}<br />
-                {{ form.submit() }}
-              </div>
-            </form>
-          </div>
-          <div class="available">
-            <h3>Available Products</h3>
-            <ul>
-              {% for category in categories %}
-              <li>
-                <h4>{{ category }}</h4>
-                <ul>
-                  {% for product in products if product.category == category %}
-                  <li>
-                    {{ product.name }} - Ksh {{ product.price }}
-                    <a
-                      href="{{ url_for('admin.edit_product', product_id=product.id) }}"
-                      >Edit</a
-                    >
-                    <a
-                      href="#"
-                      onclick="event.preventDefault(); document.getElementById('delete-form-{{ product.id }}').submit();"
-                      >Delete</a
-                    >
-                    <form
-                      id="delete-form-{{ product.id }}"
-                      action="{{ url_for('admin.delete_product', product_id=product.id) }}"
-                      method="POST"
-                      style="display: none"
-                    >
-                      {{ csrf_token }}
-                    </form>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </section>
-      </div>
+      </section>
+    </div>
   </div>
 </div>
 {% endblock %}

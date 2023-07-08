@@ -17,5 +17,8 @@ class ProductForm(FlaskForm):
     discount = IntegerField("Discount Percentage", validators=[NumberRange(min=0, max=100)])
     submit = SubmitField("Add Product")
 
-
+# Create a form for search querying
+class SearchForm(FlaskForm):
+    query = StringField("Search", validators=[DataRequired()])
+    submit = SubmitField("Go")
 

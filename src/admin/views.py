@@ -102,6 +102,7 @@ def edit_product(product_id):
 
 
 @admin_bp.route('/delete/<int:product_id>', methods=['POST'])
+@admin_required
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
 

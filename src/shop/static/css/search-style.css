@@ -15,62 +15,64 @@ body {
   background-color: #d9d9d9;
 }
 
-.fd-category {
+.search-container {
   margin-top: 10rem;
 }
-.fd-category h1 {
-  text-align: center;
+ .search-container p {
+    color: #1f3a48;
+    text-align: center;
+    font-size: 14px;
+    /* padding: 1rem; */
+ }
+
+.search-container h2 {
   color: #1f3a48;
+  text-align: center;
   padding: 1rem;
-}
-
-.fd-category p {
-  text-align: center;
-  color: #1f3a48;
+  text-transform: uppercase;
   font-style: italic;
-  font-size: 30px;
-  font-weight: 100;
+  font-size: 50px;
 }
 
-.fancy-desserts {
+.products {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: center; /* Center align items horizontally */
   gap: 2rem;
   padding: 2rem;
 }
 
-.fancy-dessert {
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   padding-bottom: 3rem;
   text-align: center;
+  width: 300px; /* Set a fixed width for each product */
 }
 
-.fancy-dessert .image {
-  text-align: center;
-}
 
-.fancy-dessert img {
+.product img {
   width: 300px;
   height: 440px;
 }
 
 .overlay {
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background-color: #fff;
-  color: #402203;
-  padding: 10px;
-  font-style: italic;
-  text-align: justify;
-  z-index: 1;
-}
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: #fff;
+    color: #402203;
+    padding: 10px;
+    font-style: italic;
+    text-align: justify;
+    z-index: 1;
+  }
 
-h3 {
+  h3 {
     font-size: 15px;
 }
 
@@ -80,7 +82,7 @@ h3 {
 
 .buy {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 0.5rem 0;
 }
 

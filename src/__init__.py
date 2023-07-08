@@ -28,6 +28,7 @@ from src.accounts.views import accounts_bp
 from src.admin.views import admin_bp
 from src.core.views import core_bp
 from src.shop.views import shop_bp
+from src.shop.forms import SearchForm
 
 
 app.register_blueprint(accounts_bp)
@@ -37,9 +38,6 @@ app.register_blueprint(shop_bp)
 
 # Import the User model from accounts module
 from src.accounts.models import User
-
-# Import the Product model from shop module
-from src.shop.models import Product
 
 # Define a function to load a user based on its user_id
 @login_manager.user_loader
@@ -52,3 +50,8 @@ login_manager.login_view = "accounts.login"
 
 # Set the flash message category for login message
 login_manager.login_message_category = "danger"
+
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)

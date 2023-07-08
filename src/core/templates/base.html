@@ -34,7 +34,7 @@
                 <li><a href="{{ url_for('shop.shop') }}">SHOP</a></li>
                 <li><a href="#Contact">CONTACT</a></li>
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="myFunction()">ACCOUNT
+                    <button class="dropbtn" onclick="accountFunction()">ACCOUNT
                       <iconify-icon icon="gridicons:dropdown"></iconify-icon>
                     </button>
                     <div class="dropdown-content" id="myDropdown">
@@ -56,8 +56,8 @@
                 </div>
               </ul>
               <div class="nav-buttons">
-                  <li id="search-icon">
-                    <iconify-icon icon="carbon:search"></iconify-icon> </li>
+                  <a id="search-icon">
+                    <iconify-icon icon="carbon:search"></iconify-icon> </a>
                   <a href="">
                     <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
                   <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
@@ -67,18 +67,19 @@
             </div>
           </nav>
 
-
           <!-- search bar -->
           <div id="search-overlay" class="search-bar">
             <div class="search-content">
-              <form id="search-form" action="/search" method="get">
-                <input type="text" id="search-input" placeholder="what are you searching for?" name="q" value>
+              <form role="form" id="search-form" action="/search" method="POST">
+                {{ form.csrf_token }}
+                <input type="text" name="query" id="search-input" placeholder="what are you searching for?" value="{{ request.args.get('query', '') }}">
                 <button type="submit">
-                  <iconify-icon icon="carbon:search"></iconify-icon></i>
+                  GO<iconify-icon icon="carbon:search"></iconify-icon></i>
                 </button>
               </form>
             </div>
           </div>
+
 
         <!-- messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}

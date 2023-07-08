@@ -127,10 +127,11 @@ a {
   font-size: 16px;
   color: #402203;
   background-color: inherit;
+  display: flex;
 }
 
 .dropbtn iconify-icon {
-  color: #d9d9d9;
+  color: #402203;
 }
 /* Hover effects on dropdown button and dropdown links */
 .dropbtn:hover,
@@ -143,7 +144,7 @@ a {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(217, 217, 217, 0.17);
+  background-color: #402203cf;
   border-radius: 5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);

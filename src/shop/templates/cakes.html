@@ -19,7 +19,9 @@
   {% for product in products %}
     <div class="cake">
       <div class="image" onmousemove="moveOverlay(event)">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <a href="{{ url_for('shop.detail_view', product_category=product_category, product_id=product_id) }}">
+          <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </a>
         <div class="overlay">
           <h3>* {{ product.name }} - Ksh {{ product.price }}</h3>
         </div>

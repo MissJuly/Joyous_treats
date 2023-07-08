@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('shop.static', filename='/css/search-style.css')}}"
+/>
+{% endblock %} {% block title %}Search-{% endblock %} {% block content %}
+<div class="search-container">
+  {% if products %}
+  <p>ALL RESULTS FOR</p>
+  <h2>{{ search_term }}</h2>
+  <div class="products">
+    {% for product in products %}
+    <div class="product">
+      <div class="image" onmousemove="moveOverlay(event)">
+          <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <div class="overlay">
+          <h3>* {{ product.name }} - Ksh {{ product.price }}</h3>
+        </div>
+      </div>
+      <div class="buy">
+        <h4><span>{{ product.name }}</span><br />Ksh {{ product.price }}</h4>
+        <button class="button"><span>Add to cart</span></button>
+      </div>
+    </div>
+  {% endfor %}{% else %}
+      <p>No results found.</p>
+      <a href="{{ url_for('shop.shop')}}"
+        ><p>Check out our other products.</p></a
+      >
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

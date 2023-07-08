@@ -4,18 +4,11 @@ $(document).ready(function() {
     $('#search-overlay').toggle();
     $('#search-input').focus();
   });
-
-$('#search-form').submit(function(event) {
-  event.preventDefault();
-
-  var searchTerm = $('#search-input').val();
-  performSearch(searchTerm);
-  });
 });
 
 
-// show drop down menu when clicked
-function myFunction() {
+// show drop down menu when account is clicked
+function accountFunction() {
   document.getElementById('myDropdown').classList.toggle('show');
 }
 
