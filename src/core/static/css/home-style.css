@@ -1,3 +1,4 @@
+/* Global CSS */
 @charset "utf-8";
 
 * {
@@ -7,7 +8,7 @@
   scroll-behavior: smooth;
 }
 
-/* header properties: background image */
+/* Header properties: background image */
 .wrapper {
   background-image: url("/core/static/images/home-page/bg.jpg");
   width: 100%;
@@ -15,9 +16,10 @@
   background-size: cover;
   background-position: center center;
   position: relative;
+  opacity: 1;
 }
 
-/* body properties */
+/* Body properties */
 body {
   margin: 0;
   padding: 0;
@@ -25,15 +27,15 @@ body {
   background-color: #d9d9d9;
 }
 
-/* navigation bar properties */
+/* Navigation bar properties */
 .topnav {
   position: fixed;
   top: 0px;
   transition: top 0.3s;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 3rem;
+  padding: 1rem;
   margin: 2rem;
   z-index: 100;
   background-color: rgba(217, 217, 217, 0.17);
@@ -44,20 +46,21 @@ body {
   border: 1px solid rgba(217, 217, 217, 0.17);
 }
 
-/* all anchor tags */
+/* All anchor tags */
 a {
   text-decoration: none;
 }
 
-/* logo properties */
+/* Logo properties */
 .logo img {
-  width: 40%;
+  width: 35%;
 }
 
-/* navigation links and buttons properties */
+/* Navigation links and buttons properties */
 .nav-area {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .nav-buttons {
@@ -65,21 +68,24 @@ a {
   align-items: center;
 }
 
+/* Remove list style from nav-buttons */
 .nav-buttons {
   list-style: none;
 }
 
+/* Styling for the iconify-icon within nav-buttons */
 .nav-buttons iconify-icon {
   color: #402203;
   font-size: 18px;
   margin: 1rem;
 }
 
+/* Styling for the iconify-icon within nav-buttons when hovered */
 .nav-buttons iconify-icon:hover {
   font-weight: bolder;
-  padding-bottom: 2px;
 }
 
+/* Styling for the menu-bars icon */
 .nav-buttons .menu-bars {
   border: 1px solid #402203;
   border-radius: 5px;
@@ -87,13 +93,15 @@ a {
   display: none;
 }
 
+/* Styling for navigation links */
 .nav-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   list-style: none;
-  gap: 5;
+  gap: 4;
 }
 
+/* Styling for anchor tags within nav-links */
 .nav-links a {
   color: #402203;
   text-decoration: none;
@@ -102,12 +110,65 @@ a {
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+/* Styling for anchor tags within nav-links when hovered */
 .nav-links a:hover {
   font-weight: bolder;
-  padding-bottom: 2px;
 }
 
-/* hidden search bar */
+/* Dropdown container */
+.dropdown {
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropbtn {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #402203;
+  background-color: inherit;
+  display: flex;
+}
+
+.dropbtn iconify-icon {
+  color: #402203;
+}
+/* Hover effects on dropdown button and dropdown links */
+.dropbtn:hover,
+.dropbtn iconify-icon:hover,
+.dropdown-content a:hover {
+ font-weight: bolder;
+}
+
+/* Dropdown content (hidden) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #402203cf;
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(217, 217, 217, 0.17);
+  min-width: 200px;
+  padding: 1.5rem;
+  right: 2%;
+}
+
+/* Links inside the dropdown  */
+.dropdown-content a {
+  color: #d9d9d9;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+
+}
+
+.show {
+  display: block;
+}
+
+/* Hidden search bar */
 .search-bar {
   position: absolute;
   top: 20%;
@@ -118,18 +179,19 @@ a {
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   border: 1px solid rgba(217, 217, 217, 0.17);
-  z-index: 100;
-  /* height: 14%; */
+  z-index: 1;
   left: 2.5%;
   display: none;
 }
 
+/* Styling for the search-form */
 #search-form {
   display: flex;
   justify-content: space-between;
   padding: 2rem 6rem;
 }
 
+/* Styling for the input field in search-form */
 #search-form input[type="text"] {
   width: 300px;
   border: transparent;
@@ -143,6 +205,7 @@ a {
   color: #402203;
 }
 
+/* Styling for the input field in search-form when hovered or active */
 #search-form input:hover,
 #search-form input:active {
   border: transparent;
@@ -150,6 +213,7 @@ a {
   outline: none;
 }
 
+/* Styling for the button in search-form */
 #search-form button {
   /* background-color: rgba(217, 217, 217, 0.17); */
   background: none;
@@ -158,7 +222,7 @@ a {
   color: #402203;
 }
 
-/* welcome-text */
+/* Welcome-text */
 .welcome-text {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -167,6 +231,7 @@ a {
   left: 50%;
 }
 
+/* Styling for the anchor tag within welcome-text */
 .welcome-text a {
   text-align: center;
   border: 1px solid #fff;
@@ -179,36 +244,41 @@ a {
   color: #fff;
 }
 
+/* Styling for the anchor tag within welcome-text when hovered */
 .welcome-text a:hover {
   background: #fff;
   color: #000;
 }
 
+/* Styling for the paragraph within welcome-text */
 .welcome-text p {
   color: #fff;
   font-style: italic;
   font-size: 30px;
 }
 
-/* details of the about section */
+/* Details of the about section */
 .about-section {
   display: flex;
   justify-content: space-between;
   margin: 2rem 2rem;
 }
 
+/* Styling for the icons container */
 .icons {
   display: flex;
   flex-direction: column;
   margin: 2rem;
 }
 
+/* Styling for the iconify-icon within icons */
 .icons iconify-icon {
   margin-bottom: 1rem;
   color: #242424;
   font-size: 8rem;
 }
 
+/* Styling for the about container */
 .about {
   display: flex;
   flex-direction: column;
@@ -220,12 +290,14 @@ a {
   box-shadow: #333;
 }
 
+/* Styling for the h2 element within about */
 .about h2 {
   text-align: center;
   color: #d9d9d9;
   font-size: 4rem;
 }
 
+/* Styling for the paragraphs within about */
 .about p {
   text-align: justify;
   color: #987654;
@@ -234,11 +306,12 @@ a {
   padding: 4rem;
 }
 
-/* for the gram - instagram posts*/
+/* For the gram - Instagram posts */
 .social-media {
   justify-content: center;
 }
 
+/* Styling for the h2 element within gram */
 .gram h2 {
   text-align: center;
   font-style: italic;
@@ -246,27 +319,31 @@ a {
   color: #000;
 }
 
+/* Styling for the posts container */
 .posts {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Styling for the post container */
 .post {
   position: relative;
   margin: 10px;
 }
 
+/* Styling for the images within post */
 .post img {
   width: 250px;
   height: 440px;
 }
 
+/* Styling for the lower-image class */
 .lower-image {
   margin-top: 15rem;
 }
 
-/* images icon overlay properties */
+/* Styling for the image overlay */
 .overlay {
   position: absolute;
   top: 0;
@@ -280,26 +357,30 @@ a {
   align-items: center;
 }
 
+/* Styling for the iconify-icon within overlay */
 .overlay iconify-icon {
   color: white;
   font-size: 32px;
 }
 
+/* Styling for the image overlay on hover */
 .post:hover .overlay {
   opacity: 1;
 }
 
+/* Styling for the follow section */
 .follow {
   text-align: center;
   padding: 3rem;
   font-size: 20px;
 }
 
-/* footer details and properties */
+/* Footer details and properties */
 footer {
   background-color: #1f3a48;
 }
 
+/* Styling for the footer area */
 .footer-area {
   display: flex;
   justify-content: center;
@@ -308,130 +389,160 @@ footer {
   padding: 3rem;
 }
 
+/* Styling for the connect container */
 .connect p {
   font-style: italic;
   color: #d9d9d9;
 }
 
+/* Styling for the social container */
 .social {
   display: flex;
   flex-direction: column;
 }
 
+/* Styling for the iconify-icon within social */
 .social iconify-icon {
   font-size: 1rem;
   color: #987654;
 }
 
+/* Styling for the contact-info container */
 .contact-info p {
   font-style: italic;
   color: #d9d9d9;
 }
 
+/* Styling for the call-email container */
 .call-email p {
   color: #987654;
 }
 
+/* Styling for the address container */
 .address p {
   font-style: italic;
   color: #d9d9d9;
 }
 
+/* Styling for the iconify-icon within physical-address */
 .physical-address iconify-icon {
   font-size: 1rem;
   color: #987654;
 }
 
+/* Styling for the paragraph within physical-address */
 .physical-address p {
   font-style: normal;
   color: #987654;
 }
 
+/* Styling for the bottom-nav container */
 .bottom-nav {
   display: flex;
   flex-direction: column;
 }
 
+/* Styling for the paragraph within bottom-nav */
 .bottom-nav p {
   font-style: italic;
   color: #d9d9d9;
 }
 
+/* Styling for the go-to container */
 .go-to {
   display: flex;
   flex-direction: column;
 }
+
+/* Styling for the anchor tag within go-to */
 .go-to a {
   text-decoration: none;
   color: #987654;
 }
 
+/* Styling for the copyright section */
 .copyright {
   font-style: italic;
   text-align: center;
 }
+
 /* medium display styles */
 @media only screen and (max-width: 850px) {
+  /* Adjust header for medium displays */
   header {
     height: auto;
     min-height: 100vh;
     background-position: top;
   }
 
+  /* Adjust logo size for medium displays */
   .logo img {
-    width: 50%;
+    width: 40%;
   }
+
+  /* Adjust padding for topnav in medium displays */
   .topnav {
     padding: 1rem;
   }
 
+  /* Adjust navigation area for medium displays */
   .nav-area {
-    position: fixed;
-    background: #402203a5;
-    /* height: 1024px; */
-    inset: 0 0 0 30%;
-    /* flex-direction: column; */
+    position: absolute;
+    background: #1f3a48;
+    inset: 0 0 0 15%;
+    height: 100vh;
+    flex-direction: column;
+    display: none;
   }
 
+  /* Adjust navigation links for medium displays */
   .nav-links {
     flex-direction: column;
-    /* display: none; */
+    align-items: center;
+    /* color: #d9d9d9; */
   }
 
+  /* Adjust navigation buttons for medium displays */
   .nav-buttons {
     flex-direction: column;
-    /* display: none; */
+    justify-content: left;
   }
 
+  /* Display the menu bars for responsive navigation in medium displays */
   .nav-buttons.responsive .menu-bars {
-    /* display: unset; */
     display: block;
     position: absolute;
     right: 0;
     top: 0;
   }
 
+  /* Adjust alignment for menu bars in responsive navigation in medium displays */
   .nav-buttons.responsive .menu-bars {
     text-align: right;
   }
 
+  /* Adjust about section for medium displays */
   .about-section {
     flex-direction: column;
     margin: 0 2rem;
   }
 
+  /* Adjust about container for medium displays */
   .about {
     margin-left: 2rem;
   }
 
+  /* Adjust heading size within about for medium displays */
   .about h2 {
     font-size: 2rem;
   }
 
+  /* Adjust paragraph padding within about for medium displays */
   .about p {
     padding: 2rem;
   }
 
+  /* Adjust icons container for medium displays */
   .icons {
     display: flex;
     flex-direction: row;
@@ -440,27 +551,97 @@ footer {
     margin-right: 2rem;
   }
 
+  /* Adjust icon size within icons container for medium displays */
   .icons iconify-icon {
     font-size: 6rem;
   }
 
+  /* Adjust gram section for medium displays */
+  .gram h2 {
+    margin-top: 2rem;
+    font-size: 20px;
+  }
+
+  /* Adjust image size within post for medium displays */
+  .post img {
+    width: 200px;
+    height: 350px;
+  }
+
+  /* Adjust margin within lower-image for medium displays */
+  .lower-image {
+    margin-top: 0rem;
+    margin-bottom: 2px;
+  }
+
+  /* Adjust height within post for medium displays */
+  .overlay {
+    height: 350px;
+  }
+
+  /* Adjust posts container for medium displays */
   .posts {
     display: flex;
-    max-width: 1200px;
-    /* width: 100%; */
+    /* max-width: 1200px; */
     flex-wrap: wrap;
     justify-content: center;
-    /* padding: 2rem; */
   }
+
+  /* Adjust footer area for medium displays */
   .footer-area {
     flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    align-items: flex-start;
   }
 
-  .footer-area > div {
-    flex-basis: auto;
-    margin-bottom: 1rem;
+  /* Adjust font size for connect section in medium displays */
+  .connect p {
+    font-size: 16px;
   }
-}
 
-@media only screen and (max-width: 425px) {
+  /* Adjust icon size within social section for medium displays */
+  .social iconify-icon {
+    font-size: 0.8rem;
+  }
+
+  /* Adjust font size for contact-info section in medium displays */
+  .contact-info p {
+    font-size: 16px;
+  }
+
+  /* Adjust font size for call-email section in medium displays */
+  .call-email p {
+    font-size: 14px;
+  }
+
+  /* Adjust font size for address section in medium displays */
+  .address p {
+    font-size: 16px;
+  }
+
+  /* Adjust icon size within physical-address section for medium displays */
+  .physical-address iconify-icon {
+    font-size: 0.8rem;
+  }
+
+  /* Adjust font size for paragraph within physical-address section in medium displays */
+  .physical-address p {
+    font-size: 14px;
+  }
+
+  /* Adjust font size for bottom-nav section in medium displays */
+  .bottom-nav p {
+    font-size: 16px;
+  }
+
+  /* Adjust font size for anchor tag within go-to section in medium displays */
+  .go-to a {
+    font-size: 14px;
+  }
+
+  /* Adjust font size for copyright section in medium displays */
+  .copyright {
+    font-size: 10px;
+  }
 }

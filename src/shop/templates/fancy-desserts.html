@@ -1,137 +1,32 @@
 {% extends "base.html" %}
-
 {% block css %}
 <link
   rel="stylesheet"
+  type="text/css"
   href="{{ url_for('shop.static', filename='/css/fd-style.css') }}"
 />
 {% endblock %}
-
 {%block title %}Fancy Desserts:Shop-{% endblock %}
-
 {% block content %}
-    <div class="fd-category">
-        <h1>FANCY DESSERTS</h1>
-        <p>A realm where dessert dreams come true!!!</p>
+<div class="fd-category">
+  <h1>FANCY DESSERTS</h1>
+  <p>A realm where dessert dreams come true!!!</p>
+</div>
+
+<div class="fancy-desserts">
+  {% for product in products %}
+    <div class="fancy-dessert">
+      <div class="image" onmousemove="moveOverlay(event)">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <div class="overlay">
+          <h3>* {{ product.name }} - Ksh {{ product.price }}</h3>
+        </div>
+      </div>
+      <div class="buy">
+        <h4><span>{{ product.name }}</span><br />Ksh {{ product.price }}</h4>
+        <button class="button"><span>Add to cart</span></button>
+      </div>
     </div>
-
-    <div class="fancy-desserts">
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-0.jpg') }}" alt="Pastel colored Macarons
-                " >
-                <div class="overlay">
-                    <h3>* Pastel colored Macarons   -  Ksh 200</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Pastel colored Macarons</span><br>Ksh 200</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-1.jpg') }}" alt="Pumpkin Treats" >
-                <div class="overlay">
-                    <h3>* Pumpkin Treats  -  Ksh 200</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Pumpkin Treats</span><br>Ksh 200</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-2.jpg') }}" alt="Chocolate Bites" >
-                <div class="overlay">
-                    <h3>* Chocolate Bites -  Ksh 150</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Chocolate Bites</span><br>Ksh 150</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-3.jpg') }}" alt="Minty Macarons" >
-                <div class="overlay">
-                    <h3>* Minty Macarons -  Ksh 250</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Minty Macarons</span><br>Ksh 250</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-4.jpg') }}" alt="Mirror Glazed Dome" >
-                <div class="overlay">
-                    <h3>* Mirror Glazed Dome -  Ksh 600</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Mirror Glazed Dome</span><br>Ksh 600</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class ="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-5.jpg') }}" alt="Brownies" >
-                <div class="overlay">
-                    <h3>* Brownies -  Ksh 500</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Brownies</span><br>Ksh 500</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-6.jpg') }}" alt="Eclairs" >
-                <div class="overlay">
-                    <h3>* Eclairs  -  Ksh 400</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Eclairs</span><br>Ksh 400</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class ="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-7.jpg') }}" alt="White Chocolate Bark" >
-                <div class="overlay">
-                    <h3>* White Chocolate Bark  -  Ksh 700</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>White Chocolate Bark</span><br>Ksh 700</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-
-        <div class="fancy-dessert">
-            <div class="image" onmousemove="moveOverlay(event)">
-                <img src="{{ url_for('shop.static', filename='/images/fancy-desserts/fd-8.jpg') }}" alt="Tiramisu" >
-                <div class="overlay">
-                    <h3>* Tiramisu  -  Ksh 1,200</h3>
-                </div>
-            </div>
-            <div class="buy">
-                <h4><span>Tiramisu</span><br>Ksh 1,200</h4>
-                <button class="button"><span>Add to cart </span></button>
-            </div>
-        </div>
-    </div>
+  {% endfor %}
+</div>
 {% endblock %}

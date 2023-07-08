@@ -1,5 +1,7 @@
+/* Styling for the entire document */
 @charset "utf-8";
 
+/* Resetting default styles for all elements */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@
   scroll-behavior: smooth;
 }
 
-/* body properties */
+/* Styling the body of the document */
 body {
   margin: 0;
   padding: 0;
@@ -15,9 +17,11 @@ body {
   background-color: #d9d9d9;
 }
 
+/* Styling for the product section */
 .products {
   margin-top: 10rem;
 }
+
 .products h1 {
   text-align: center;
   color: #1f3a48;
@@ -31,26 +35,30 @@ body {
   font-size: 30px;
   font-weight: 100;
 }
+
+/* Styling for the items container */
 .items {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
   gap: 2rem;
   padding: 2rem;
 }
 
+/* Styling for individual items */
 .item {
   position: relative;
   padding-bottom: 3rem;
   text-align: center;
 }
 
+/* Styling for the item titles */
 h2 a {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    color: #1f3a48;
-  }
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #1f3a48;
+}
 
+/* Styling for the item images */
 .item .image {
   text-align: center;
 }
@@ -60,6 +68,7 @@ h2 a {
   height: 420px;
 }
 
+/* Styling for the item links and hover effects */
 .item a {
   overflow: hidden;
   position: relative;
@@ -112,34 +121,66 @@ h2 a {
   transform: translate3d(-200%, 0, 0);
 }
 
+/* Styling for the middle text overlay on item images */
 .middle-text {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
 
+/* Styling for the item image opacity and middle text on hover */
 .image:hover img {
-    opacity: 0.3;
+  opacity: 0.3;
 }
 
 .image:hover .middle-text {
-    opacity: 1;
+  opacity: 1;
 }
 
+/* Styling for the links within h3 elements */
 h3 a {
-    background-color: #1f3a48;
-    color: #987654;
-    font-size: 16px;
-    padding: 16px 32px;
+  background-color: #1f3a48;
+  color: #987654;
+  font-size: 16px;
+  padding: 16px 32px;
 }
 
+/* Media Query for max-width 850px - Adjust styles for smaller screens */
 @media only screen and (max-width: 850px) {
+   /* Adjust font size for product section */
+  .products h1 {
+    font-size: 24px;
+  }
+
+  /* Adjust font size for product section */
+  .products p {
+    font-size: 24px;
+  }
+
+  /* Adjust layout for item containers */
   .items {
     flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+   /* Adjust item spacing */
+  .item {
+    padding-bottom: 0;
+  }
+
+  /* Adjust item image height */
+  .item img {
+    height: 320px;
+  }
+
+  /* Adjust spacing for item titles */
+  h2 a {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }

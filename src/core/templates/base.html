@@ -33,15 +33,31 @@
                 <li><a href="#About">ABOUT</a></li>
                 <li><a href="{{ url_for('shop.shop') }}">SHOP</a></li>
                 <li><a href="#Contact">CONTACT</a></li>
-                {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('accounts.logout') }}">LOG OUT</a></li>
-                {% else %}
-                <li><a href="{{ url_for('accounts.login') }}">LOGIN</a></li>
-                {% endif %}
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="accountFunction()">ACCOUNT
+                      <iconify-icon icon="gridicons:dropdown"></iconify-icon>
+                    </button>
+                    <div class="dropdown-content" id="myDropdown">
+                      {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('accounts.logout') }}">
+                          <iconify-icon icon="ooui:user-avatar"></iconify-icon> LOG OUT</a>
+                      {% else %}
+                        <a href="{{ url_for('accounts.login') }}">
+                          <iconify-icon icon="ooui:user-avatar"></iconify-icon> LOGIN</a>
+                      {% endif %}
+                      {% if current_user.is_admin %}
+                        <a href="{{ url_for('admin.admin_dashboard') }}" title="dashboard">
+                          <iconify-icon icon="ri:dashboard-fill"></iconify-icon> ADMIN DASHBOARD</a>
+                      {% else %}
+                        <a href="{{ url_for('accounts.user_dashboard') }}" title="dashboard">
+                          <iconify-icon icon="ri:dashboard-fill"></iconify-icon> USER DASHBOARD</a>
+                      {% endif %}
+                    </div>
+                </div>
               </ul>
               <div class="nav-buttons">
-                  <li id="search-icon">
-                    <iconify-icon icon="carbon:search"></iconify-icon> </li>
+                  <a id="search-icon">
+                    <iconify-icon icon="carbon:search"></iconify-icon> </a>
                   <a href="">
                     <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
                   <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
@@ -54,14 +70,16 @@
           <!-- search bar -->
           <div id="search-overlay" class="search-bar">
             <div class="search-content">
-              <form id="search-form" action="/search" method="get">
-                <input type="text" id="search-input" placeholder="what are you searching for?" name="q" value>
+              <form role="form" id="search-form" action="/search" method="POST">
+                {{ form.csrf_token }}
+                <input type="text" name="query" id="search-input" placeholder="what are you searching for?" value="{{ request.args.get('query', '') }}">
                 <button type="submit">
-                  <iconify-icon icon="carbon:search"></iconify-icon></i>
+                  GO<iconify-icon icon="carbon:search"></iconify-icon></i>
                 </button>
               </form>
             </div>
           </div>
+
 
         <!-- messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -82,7 +100,7 @@
         <main>
         {% block content %}{% endblock %}
         </main>
-        
+
         <!-- footer -->
         <footer>
           <div class="footer-area" id="Contact">
@@ -117,9 +135,18 @@
                   <p>NAVIGATE</p>
                   <div class="go-to">
                     <a href="#About">ABOUT US</a>
-                    <a href="/shop">SHOP</a>
+                    <a href="{{ url_for('shop.shop') }}">SHOP</a>
                     <a href="#">CONTACT</a>
-                    <a href="#">LOGIN</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('accounts.logout') }}">LOG OUT</a>
+                    {% else %}
+                    <a href="{{ url_for('accounts.login') }}">LOGIN</a>
+                    {% endif %}
+                    {% if current_user.is_admin %}
+                    <a href="{{ url_for('admin.admin_dashboard') }}">ADMIN DASHBOARD</a>
+                    {% else %}
+                    <a href="{{ url_for('accounts.user_dashboard') }}">USER DASHBOARD</a>
+                    {% endif %}
                   </div>
               </div>
           </div>
@@ -130,7 +157,7 @@
       <!-- javascript files and libraries -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-      <script src="{{ url_for('core.static', filename='/js/script.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('core.static', filename='/js/script.js') }}"></script>
 
 </body>
 </html>

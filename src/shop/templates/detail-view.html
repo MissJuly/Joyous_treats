@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('shop.static', filename='/css/detail-style.css') }}"
+/>
+{% endblock %}
+{%block title %}{{ product.name }}-{% endblock %}
+{% block content %}
+<div class="detail-view-container">
+    <img src="{{ product.image_url }}" alt="{{ product.name }}">
+    <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>{{ product.price }}</p>
+        <button class="button"><span>Add to cart</span></button>
+    </div>
+</div>
+{% endblock %}

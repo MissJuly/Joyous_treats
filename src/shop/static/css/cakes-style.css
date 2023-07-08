@@ -43,6 +43,7 @@ body {
 }
 
 .cake {
+  /* flex: 0 0 calc(33.33% - 2rem); */
   position: relative;
   padding-bottom: 3rem;
   text-align: center;
@@ -53,7 +54,7 @@ body {
 }
 
 .cake img {
-  width: 100%;
+  width: 300px;
   height: 420px;
 }
 

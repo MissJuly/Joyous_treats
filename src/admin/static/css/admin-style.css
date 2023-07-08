@@ -1,0 +1,137 @@
+/* Set the character encoding to UTF-8 */
+@charset "utf-8";
+
+/* Reset default styling and set global font-family */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Old Standard TT", serif;
+  scroll-behavior: smooth;
+}
+
+.background {
+  /* background-image: url("/admin/static/images/bg-3.jpg"); */
+  /* height: 200vh; */
+  background-size: cover;
+  width: 100%;
+  background-position: center;
+
+}
+
+.admin-container {
+  padding: 10rem 2rem 5rem 2rem;
+}
+
+.admin {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.admin p {
+  color: #402203;
+}
+.admin a {
+  color: #402203;
+}
+.users {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  color: #402203;
+}
+
+.orders {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  color: #402203;
+}
+
+.orders h2 {
+  color: #402203;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders th {
+  background-color: #1f3a48;
+  color: #987654;
+  padding: 10px;
+}
+
+.orders th,
+.orders td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.orders tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.shop {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.products-form {
+  padding: 1.5rem;
+  width: 300px;
+  height: 450px;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.input-box {
+  /* width: 100%; */
+}
+
+.products-form h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #987654;
+}
+
+.input-box label {
+  color: #402203;
+}
+
+.input-box input {
+  /* background: #402203; */
+  font-size: 16px;
+}
+
+.available h4 {
+  text-transform: uppercase;
+}
+.available {
+  padding: 1.5rem;
+  background: transparent;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 2px solid rgba(217, 217, 217, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  color: #402203;
+}
