@@ -1,0 +1,26 @@
+ /* Styling for the cart pop-up */
+ #cart-popup {
+    position: fixed;
+    top: 25%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    /*border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    display: none;*/
+    z-index: 1;
+}
+/*
+#cart-popup h2 {
+    margin-top: 0;
+}
+
+#cart-popup ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-popup li {
+    margin-bottom: 10px;
+} */

@@ -19,7 +19,7 @@
   {% for product in products %}
     <div class="cake">
       <div class="image" onmousemove="moveOverlay(event)">
-        <a href="{{ url_for('shop.detail_view', product_category=product_category, product_id=product_id) }}">
+        <a href="{{ url_for('shop.product_detail', product_id=product.id) }}">
           <img src="{{ product.image_url }}" alt="{{ product.name }}">
         </a>
         <div class="overlay">
@@ -28,7 +28,8 @@
       </div>
       <div class="buy">
         <h4><span>{{ product.name }}</span><br />Ksh {{ product.price }}</h4>
-        <button class="button"><span>Add to cart</span></button>
+        <input type="number" id="quantity{{ product.id }}" min="1" value="1" style="display: none;">
+        <button class="button" onclick="addToCart('{{ product.id }}')"><span>Add to cart</span></button>
       </div>
     </div>
   {% endfor %}
