@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('core.static', filename='/images/favicon/favicon-16x16.png') }}" />
     <link rel="manifest" href="{{ url_for('core.static', filename='/images/favicon/site.webmanifest') }}" />
     <!-- css file -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('shop.static', filename='/css/cart-style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('core.static', filename='/css/flash-message-style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('core.static', filename='/css/home-style.css') }}" />
     <!-- googlefont imports -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,7 +60,7 @@
               <div class="nav-buttons">
                   <a id="search-icon">
                     <iconify-icon icon="carbon:search"></iconify-icon> </a>
-                  <a href="">
+                  <a href="#cartPopup" id="cartBtn">
                     <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
                   <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
                     <iconify-icon class="menu-bars" icon="icon:menu"></iconify-icon>
@@ -74,32 +76,45 @@
                 {{ form.csrf_token }}
                 <input type="text" name="query" id="search-input" placeholder="what are you searching for?" value="{{ request.args.get('query', '') }}">
                 <button type="submit">
-                  GO<iconify-icon icon="carbon:search"></iconify-icon></i>
+                <iconify-icon icon="carbon:search"></iconify-icon></i>
                 </button>
               </form>
             </div>
           </div>
 
-
-        <!-- messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <div class="message-container">
-            <div class="message-box">
-                {% for category, message in messages %}
-                <div class="message alert {{ category }}">
-                    {{ message }}
-                    <button type="button" class="close-btn" data-dismiss="message" aria-label="Close">&times;</button>
-                </div>
-                {% endfor %}
+          <!-- Cart Modal-window -->
+          <div id="cartPopup" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Cart</h2>
+              <ul id="cart-items">
+                  <!-- Cart items will be dynamically added here -->
+              </ul>
+              <p id="total">Total: Ksh 0.00</p>
             </div>
         </div>
+
+         <!-- messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+         <div id="popup-container" class="popup-container">
+             <div class="popup-box">
+                 {% for category, message in messages %}
+                 <div class="message alert {{ category }}">
+                     {{ message }}
+                     <button type="button" class="close-btn" aria-label="Close">&times;</button>
+                 </div>
+                 {% endfor %}
+             </div>
+         </div>
         {% endif %}
         {% endwith %}
 
         <main>
         {% block content %}{% endblock %}
         </main>
+
+
 
         <!-- footer -->
         <footer>
@@ -134,9 +149,8 @@
               <div class="bottom-nav">
                   <p>NAVIGATE</p>
                   <div class="go-to">
-                    <a href="#About">ABOUT US</a>
+                    <!-- <a href="#About">ABOUT US</a> -->
                     <a href="{{ url_for('shop.shop') }}">SHOP</a>
-                    <a href="#">CONTACT</a>
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('accounts.logout') }}">LOG OUT</a>
                     {% else %}

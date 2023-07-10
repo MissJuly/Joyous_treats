@@ -7,7 +7,7 @@
 {% endblock %} {% block title %}Search-{% endblock %} {% block content %}
 <div class="search-container">
   {% if products %}
-  <p>ALL RESULTS FOR</p>
+  <p>ALL SEARCH RESULTS FOR</p>
   <h2>{{ search_term }}</h2>
   <div class="products">
     {% for product in products %}
@@ -24,10 +24,13 @@
       </div>
     </div>
   {% endfor %}{% else %}
-      <p>No results found.</p>
-      <a href="{{ url_for('shop.shop')}}"
-        ><p>Check out our other products.</p></a
+  <div class="no-results">
+      <h3>No results found.</h3>
+      <p>Check out our other products.</p>
+      <a href="{{ url_for('shop.shop')}}">
+        GO TO SHOP</a
       >
+  </div>
     </div>
     {% endif %}
   </div>

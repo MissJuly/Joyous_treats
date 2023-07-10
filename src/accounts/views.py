@@ -52,7 +52,7 @@ def register():
         flash("You registered and are now logged in. Welcome!", "success")
 
         # Redirect the user to the homepage
-        return redirect(url_for("core.home"))
+        return redirect(url_for("accounts.user_dashboard"))
 
     # Render the registration template with the form
     return render_template('register.html', form=form)
@@ -90,8 +90,7 @@ def login():
         else:
             # If the email and/or password is incorrect, show an error message
             flash("Invalid email and/or password.", "danger")
-            return render_template('login.html', form=form)
-
+            return  redirect(url_for("accounts.register"))
     # Render the login template with the form
     return render_template('login.html', form=form)
 

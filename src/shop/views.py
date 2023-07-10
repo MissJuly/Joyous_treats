@@ -63,7 +63,7 @@ def search():
         return render_template('search.html', form=form, products=products, search_term=search_term)
     return render_template('search.html', form=form, products=[], search_term=search_term)
 
-    
+
 # Api routes
 # Retrieve a list of available bakery products
 @shop_bp.route("/api/products", methods=['GET'])
@@ -107,12 +107,9 @@ def get_product(product_id):
 
     return jsonify(product_data)
 
-@shop_bp.route("/<product_category>/<product_id>")
-def detail_view(product_category, product_id):
-    # Retrieve the product from the database based on the product_name
-    product = Product.query.filter_by(product_category=product_category, product_id=product_id).first()
-
-    return render_template('detail-view.html', product=product)
-
+@shop_bp.route('/product-detail/<int:product_id>',  methods=['GET', 'POST'])
+def product_detail(product_id):
+    product = Product.query.get(product_id)
+    return render_template('product-detail.html', product=product)
 
 
