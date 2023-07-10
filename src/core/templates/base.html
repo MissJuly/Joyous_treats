@@ -60,7 +60,7 @@
               <div class="nav-buttons">
                   <a id="search-icon">
                     <iconify-icon icon="carbon:search"></iconify-icon> </a>
-                  <a href="" onclick="showCart()">
+                  <a href="#cartPopup" id="cartBtn">
                     <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
                   <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
                     <iconify-icon class="menu-bars" icon="icon:menu"></iconify-icon>
@@ -82,14 +82,16 @@
             </div>
           </div>
 
-          <!-- Cart Pop-up -->
-          <div id="cart-popup">
-            <button onclick="hideCart()">Close</button>
-            <h2>Cart</h2>
-            <ul id="cart-items">
-                <!-- Cart items will be dynamically added here -->
-            </ul>
-            <p id="total">Total: Ksh 0.00</p>
+          <!-- Cart Modal-window -->
+          <div id="cartPopup" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Cart</h2>
+              <ul id="cart-items">
+                  <!-- Cart items will be dynamically added here -->
+              </ul>
+              <p id="total">Total: Ksh 0.00</p>
+            </div>
         </div>
 
          <!-- messages -->

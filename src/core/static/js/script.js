@@ -57,13 +57,6 @@ window.onclick = function(e) {
   }
 }
 
-document.addEventListener("mousemove", function (event) {
-  if (event.target.classList.contains("image")) {
-    moveOverlay(event);
-  }
-});
-
-
 
 //add title overlay effect on images with mouse movement
 function moveOverlay(event) {
@@ -75,97 +68,35 @@ function moveOverlay(event) {
   overlay.style.transform = `translate(${x}px, ${y}px)`;
 }
 
+document.addEventListener("mousemove", function (event) {
+  if (event.target.classList.contains("image")) {
+    moveOverlay(event);
+  }
+});
 
 
-// Function to show the cart pop-up
-function showCart() {
-    updateCart();
-    var cartPopup = document.getElementById('cart-popup');
-    cartPopup.style.display = 'block';
+// Get the modal
+var modal = document.getElementById("cartPopup");
+
+// Get the button that opens the modal
+var btn = document.getElementById("cartBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
 }
 
-// Function to hide the cart pop-up
-function hideCart() {
-    var cartPopup = document.getElementById('cart-popup');
-    cartPopup.style.display = 'none';
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
 }
 
-// Function to add an item to the cart
-function addToCart(itemId) {
-  var quantity = parseInt(document.getElementById('quantity' + itemId).value);
-  var data = { 'name': 'Product ' + itemId, 'quantity': quantity };
-
-  $.ajax({
-      url: '/cart/add',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(data),
-      success: function(response) {
-          alert(response.message);
-          updateCart();
-      }
-  });
-}
-
-// Function to remove an item from the cart
-function removeFromCart(itemId) {
-  var data = { 'item_id': itemId };
-
-  $.ajax({
-      url: '/cart/remove',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(data),
-      success: function(response) {
-          alert(response.message);
-          updateCart();
-      }
-  });
-}
-
-// Function to update the cart display
-function updateCart() {
-  $.ajax({
-      url: '/cart',
-      type: 'GET',
-      success: function(response) {
-          var cartItems = response;
-
-          // Clear the cart display
-          var cartItemsElement = document.getElementById('cart-items');
-          cartItemsElement.innerHTML = '';
-
-          // Update the cart display with the retrieved cart items
-          cartItems.forEach(function(item) {
-              var li = document.createElement('li');
-              var itemText = document.createTextNode(item.name + ' (Quantity: ' + item.quantity + ')');
-              li.appendChild(itemText);
-
-              var removeButton = document.createElement('button');
-              removeButton.innerHTML = 'Remove';
-              removeButton.onclick = function() {
-                  removeFromCart(item.id);
-              };
-              li.appendChild(removeButton);
-
-              cartItemsElement.appendChild(li);
-          });
-
-          // Calculate and display the total
-          var total = calculateTotal(cartItems);
-          var totalElement = document.getElementById('total');
-          totalElement.innerHTML = 'Total: $' + total.toFixed(2);
-      }
-  });
-}
-
-// Function to calculate the total of cart items
-function calculateTotal(cartItems) {
-  var total = 0;
-  cartItems.forEach(function(item) {
-      // Perform calculation based on item price and quantity
-      // Modify this calculation based on your specific requirements
-      total += item.price * item.quantity;
-  });
-  return total;
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }

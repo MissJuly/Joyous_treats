@@ -197,7 +197,6 @@ a {
   border: transparent;
   outline: none;
   background: transparent;
-  /* background-color: rgba(217, 217, 217, 0.17); */
   border-bottom: 1px solid #987654;
   font-size: 20px;
   font-style: italic;
@@ -215,7 +214,6 @@ a {
 
 /* Styling for the button in search-form */
 #search-form button {
-  /* background-color: rgba(217, 217, 217, 0.17); */
   background: none;
   border: none;
   font-size: 24px;
