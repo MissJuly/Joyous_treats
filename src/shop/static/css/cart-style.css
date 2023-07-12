@@ -1,5 +1,5 @@
 /* Styling for the modal (background) */
-.modal {
+/* .modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -10,9 +10,9 @@
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-}
+} */
 
-.modal-content {
+.cart-content {
     background-color: #fdfdfd;
     margin: 15% auto;
     padding: 20px;
@@ -20,7 +20,7 @@
     width: 80%;
 }
 
-.close {
+/* .close {
     color: #aaa;
     font-size: 28px;
     float: right;
@@ -32,4 +32,4 @@
     color: #3c3b3b;
     text-decoration: none;
     cursor: pointer;
-}
+} */
