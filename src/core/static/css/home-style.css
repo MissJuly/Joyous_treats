@@ -240,7 +240,13 @@ a {
   font-size: 24px;
   color: #402203;
 }
-
+ /* cart length
+ .cart {
+  display: flex;
+  color: #402203;
+  font-size: 18px;
+  margin: 1rem;
+} */
 /* Welcome-text */
 .welcome-text {
   position: absolute;

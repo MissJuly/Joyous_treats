@@ -6,18 +6,12 @@
 />
 {% endblock %}
 {% block title %}Cart-{% endblock %} {% block content %}
-<!-- Cart Modal-window -->
   <div class="cart-content">
     <h2>Cart</h2>
-    {% for item in cart_items %}
-      <li>
-        <span>{{ item.product.name }}</span>
-        <input class="quantity-input" type="number" min="1" value="{{ item.quantity }}" data-product-id="{{ item.product.id }}">
-        <button class="remove-item" data-product-id="{{ item.product.id }}">Remove</button>
-      </li>
-      {% endfor %}
-    </ul>
-    <p id="total">Total: Ksh {{ total_amount }}</p>
+
+      {{ order }}
+
+
     <button id="clear-cart">Clear Cart</button>
   </div>
 

@@ -66,23 +66,6 @@ window.onclick = function (e) {
 };
 
 // //add title overlay effect on images with mouse movement
-
-// document.addEventListener("mousemove", function (event) {
-//   if (event.target.classList.contains("image")) {
-//     moveOverlay(event);
-
-//     function moveOverlay(event) {
-//       var container = event.currentTarget;
-//       var overlay = container.querySelector(".overlay");
-//       var containerRect = container.getBoundingClientRect();
-//       var x = event.clientX - containerRect.left;
-//       var y = event.clientY - containerRect.top;
-//       overlay.style.transform = `translate(${x}px, ${y}px)`;
-//     }
-//   }
-
-// });
-
 document.addEventListener("mousemove", function(event) {
   var target = event.target;
   if (target.classList.contains("image")) {
@@ -99,18 +82,3 @@ function moveOverlay(event) {
   overlay.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-// Add event listener for click on image overlay
-document.addEventListener("click", function(event) {
-  var target = event.target;
-  if (target.classList.contains("overlay")) {
-    var imageElement = target.parentNode; // Get the parent image element
-    var productId = imageElement.dataset.productId;
-    openDetailView(productId);
-  }
-});
-
-function openDetailView(productId) {
-  // Perform actions to open the product detail page
-  // Replace the following line with your own code to open the product detail page using the productId
-  console.log("Opening product detail page for productId: ", productId);
-}

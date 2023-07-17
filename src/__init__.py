@@ -4,11 +4,16 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_wtf import CSRFProtect
 
 
 # Create a Flask application instance
 app = Flask(__name__)
 app.config.from_object(config("APP_SETTINGS"))
+app.config["UPLOADED_IMAGES_DEST"] = 'static/images'
+images = UploadSet('images', IMAGES)
+configure_uploads(app, images)
 
 # Initialize the LoginManager extension to handle user authentication
 login_manager = LoginManager()
@@ -22,6 +27,9 @@ db = SQLAlchemy(app)
 
 # Initialize the Migrate extension to handle database migrations
 migrate = Migrate(app, db)
+
+# Initializes the CSRF protection required for secure form submissions
+csrf = CSRFProtect(app)
 
 # Registering blueprints for different parts of the application
 from src.accounts.views import accounts_bp

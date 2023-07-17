@@ -48,7 +48,7 @@
       <section class="shop">
         <div class="products-form">
           <h2>Products</h2>
-          <form action="/admin" method="POST">
+          <form action="" method="POST" enctype="multipart/form-data">
             {{ form.csrf_token }}
             <div class="input-box">
               {{ form.name.label }}<br />
@@ -59,8 +59,8 @@
               {{ form.description() }}<br />
               {{ form.price.label }}<br />
               {{ form.price() }}<br />
-              {{ form.image_url.label }}<br />
-              {{ form.image_url() }}<br />
+              {{ form.image.label }}<br />
+              {{ form.image }}<br />
               {{ form.availability.label }}<br />
               {{ form.availability() }}<br />
               {{ form.discount.label }}<br />
@@ -94,7 +94,7 @@
                     method="POST"
                     style="display: none"
                   >
-                    {{ csrf_token }}
+                    {{ form.csrf_token }}
                   </form>
                 </li>
                 {% endfor %}

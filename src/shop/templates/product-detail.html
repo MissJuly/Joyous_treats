@@ -1,20 +1,34 @@
-{% extends "base.html" %}
-{% block css %}
+{% extends "base.html" %} {% block css %}
 <link
   rel="stylesheet"
   type="text/css"
-  href="{{ url_for('shop.static', filename='/css/detail-style.css') }}"
+  href="{{ url_for('shop.static', filename='/css/product-detail-style.css') }}"
 />
-{% endblock %}
-{%block title %}{{ product.name }}-{% endblock %}
-{% block content %}
+{% endblock %} {%block title %}{{ product.name }}-{% endblock %} {% block
+content %}
 <div class="detail-view-container">
-    <img src="{{ product.image_url }}" alt="{{ product.name }}">
-    <div class="product-details">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-        <p>{{ product.price }}</p>
-        <button class="button"><span>Add to cart</span></button>
-    </div>
+  <div class="image">
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+  </div>
+  <div class="product-details">
+    <h2>{{ product.name }}</h2>
+    <h3>Category : {{ product.category }}</h3>
+    <hr>
+    <h4>Description</h4>
+    <p>{{ product.description }}</p>
+    <hr>
+    <p>Price: Ksh {{ product.price }}</p>
+    <p>Discount: {{ product.discount }}%</p>
+    <hr>
+    <p>
+      {% if product.availability %} In stock {% else %} Out of stock {% endif %}
+    </p>
+    <form action="" method="post">
+      <input type="hidden" name="product_id" value="{{ product.id }}" />
+      <input type="number" name="quantity" min="1" value="1" />
+      <button type="submit" class="button"><span>Add to cart</span></button>
+    </form>
+  </div>
 </div>
 {% endblock %}
+
