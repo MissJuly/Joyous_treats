@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, jsonify, request, session, redirect, url_for, json, flash
+from flask import Blueprint, render_template, jsonify, request, session, redirect, url_for, json, flash, send_from_directory
 from flask_login import current_user, login_user, login_required, logout_user
 from sqlalchemy import or_
-from src import db
+from src import db, app
 from src.accounts.models import User
 from src.shop.forms import ProductForm, SearchForm
 from src.shop.models import Product, Order, OrderItem
-
+import os
 
 
 # Create a Blueprint for the shop section of the website
@@ -46,6 +46,12 @@ def pastries():
 def fancy_desserts():
     products = Product.query.filter_by(category='fancy desserts').all()
     return render_template('fancy-desserts.html', products=products)
+
+# Serve uploaded images
+# @shop_bp.route('/images/<filename>')
+# def display_images(filename):
+#     return send_from_directory(app.config["UPLOADED_IMAGES_DEST"], filename)
+
 
 # Search products in database
 @shop_bp.route("/search", methods=['POST', 'GET'])
@@ -107,39 +113,33 @@ def get_product(product_id):
 
 # Route for product detail view
 @shop_bp.route('/product-detail/<int:product_id>',  methods=['GET', 'POST'])
+@login_required
 def product_detail(product_id):
     product = Product.query.get(product_id)
-
     if request.method == 'POST':
-        # def add_to_cart():
-        product = Product.query.get_or_404(product_id)
-        user_id = current_user.id
-        order_item = OrderItem.query.filter_by(product_id=product.id, user_id=user_id, status=False).first()
-        order = Order.query.filter_by(user_id=user_id, status=False).first()
+        order_item = OrderItem.query.filter_by(product=product.id, user=current_user.id, status=False).first()
+        order = Order.query.filter_by(user=current_user.id, status=False).first()
 
         if order:
-            # Check if the order_item is in the order
+            # Check if order_item exists
             if order_item:
                 order_item.quantity += 1
                 db.session.commit()
-                flash("This product quantity was updated", 'success')
-                return redirect(url_for('shop.cart'))
+                flash('Product added successfully!', 'success')
             else:
-                order_item = OrderItem(product_id=product.id, user_id=user_id)
+                order = Order.query.filter_by(user=current_user.id, status=False).first()
+                order_item = OrderItem(product=product.id, user=current_user.id, order=order.id)
                 db.session.add(order_item)
-                order_item.order = order
                 db.session.commit()
-                flash('This product was added to your cart', 'success')
-                return redirect(url_for('shop.cart'))
+                flash('Product added successfully!', 'success')
         else:
-            order = Order(user_id=user_id)
+            order = Order(user=current_user.id)
             db.session.add(order)
-            order_item = OrderItem(product_id=product.id, user_id=user_id)
+            new_order = Order.query.filter_by(user=current_user.id, status=False).first()
+            order_item = OrderItem(product=product.id, user=current_user.id, order=new_order.id)
             db.session.add(order_item)
-            order_item.order = order
             db.session.commit()
-            flash('This product was added to your cart', 'success')
-
+            flash('Product added successfully!', 'success')
 
     return render_template('product-detail.html', product=product)
 
@@ -147,42 +147,6 @@ def product_detail(product_id):
 @shop_bp.route('/cart')
 @login_required
 def cart():
-    order = Order.query.filter_by(user_id=current_user.id, status=False).first()
-    return render_template('cart.html', order=order)
-
-
-
-# product_id = request.form.get('product_id')
-#     quantity = request.form.get('quantity')
-
-#     if not product_id or not quantity:
-#         flash('Missing product ID or quantity', 'error')
-#         return redirect(url_for('shop.cart'))
-
-#     try:
-#         product_id = int(product_id)
-#         quantity = int(quantity)
-#     except ValueError:
-#         flash('Invalid product ID or quantity', 'error')
-#         return redirect(url_for('shop.cart'))
-
-#     product = Product.query.get(product_id)
-#     if not product:
-#         flash('Product not found', 'error')
-#         return redirect(url_for('shop.cart'))
-
-#     order = Order.query.filter_by(user_id=current_user.id).first()
-#     if not order:
-#         order = Order(user_id=current_user.id)
-#         db.session.add(order)
-
-#     order_item = OrderItem.query.filter_by(order_id=order.id, product_id=product_id).first()
-#     if order_item:
-#         order_item.quantity += quantity
-#     else:
-#         order_item = OrderItem(order_id=order.id, product_id=product_id, quantity=quantity, subtotal=product.price)
-#         db.session.add(order_item)
-
-#     db.session.commit()
-#     flash('Product added to cart successfully', 'success')
-#     return redirect(url_for('shop.cart'))
+    # order_item = OrderItem.query.filter_by(product=product.id, )
+    orders = Order.query.filter_by(user=current_user.id, status=False).first()
+    return render_template('cart.html', orders=orders)

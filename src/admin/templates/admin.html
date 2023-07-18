@@ -80,7 +80,7 @@
                 <li>
                   {{ product.name }} - Ksh {{ product.price }}
                   <a
-                    href="{{ url_for('admin.edit_product', product_id=product.id) }}"
+                    href="#" class="edit-link" data-target="#editModal{{ product.id }}"
                     >Edit</a
                   >
                   <a
@@ -104,6 +104,36 @@
           </ul>
         </div>
       </section>
+      {% for product in products %}
+      <!-- Edit Product Modal -->
+      <div class="modal" id="editModal{{ product.id }}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product</h5>
+                    <a href="#" class="close">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <!-- Add the form for editing the product -->
+                    <form method="POST" action="{{ url_for('admin.edit_product', product_id=product.id) }}" enctype="multipart/form-data">
+                      {{ form.csrf_token }}
+                      {{ form.hidden_tag() }}
+
+                      {{ form.name.label }} {{ form.name(value=product.name) }}
+                      {{ form.category.label }} {{ form.category(value=product.category) }}
+                      <label for="description">Description</label><br>
+                      <textarea id="description" name="description" rows="4">{{ product.description }}</textarea><br>
+                      {{ form.price.label }} {{ form.price(value=product.price) }}
+                      {{ form.image.label }} {{ form.image }}
+                      {{ form.availability.label }} {{ form.availability(value=product.availability) }}
+                      {{ form.discount.label }} {{ form.discount(value=product.discount) }}
+                      <input type="submit" value="Save">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     </div>
   </div>
 </div>

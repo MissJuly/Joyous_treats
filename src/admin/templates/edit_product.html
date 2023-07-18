@@ -1,5 +1,5 @@
 <!-- edit_product.html -->
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {{ form.csrf_token }}
     {{ form.hidden_tag() }}
 
@@ -7,7 +7,7 @@
     {{ form.category.label }} {{ form.category }}
     {{ form.description.label }} {{ form.description }}
     {{ form.price.label }} {{ form.price }}
-    {{ form.image_url.label }} {{ form.image_url }}
+    {{ form.image.label }} {{ form.image }}
     {{ form.availability.label }} {{ form.availability }}
     {{ form.discount.label }} {{ form.discount }}
 

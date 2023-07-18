@@ -1,5 +1,5 @@
 from decouple import config
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -14,6 +14,8 @@ app.config.from_object(config("APP_SETTINGS"))
 app.config["UPLOADED_IMAGES_DEST"] = 'static/images'
 images = UploadSet('images', IMAGES)
 configure_uploads(app, images)
+
+app.use_static_loader = True
 
 # Initialize the LoginManager extension to handle user authentication
 login_manager = LoginManager()
@@ -63,3 +65,7 @@ login_manager.login_message_category = "danger"
 def base():
     form = SearchForm()
     return dict(form=form)
+
+@app.route('/images/<filename>')
+def display_images(filename):
+    return send_from_directory(app.config["UPLOADED_IMAGES_DEST"], filename)

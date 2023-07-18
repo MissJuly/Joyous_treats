@@ -106,12 +106,26 @@ def edit_product(product_id):
     form = ProductForm(obj=product)
 
     if form.validate_on_submit():
+        # Update the existing product attributes with the form data
         form.populate_obj(product)
+
+        # Check if a new image file has been uploaded
+        if form.image.data:
+            # print(form.errors)
+            # Save the uploaded image file
+            filename = secure_filename(form.image.data.filename)
+            saved_filename = images.save(form.image.data)
+
+            # Update the product's image atttribute with the new filename
+            product.image = saved_filename
+
+        # Update the product in the database
+        product.updated_at = datetime.now()
         db.session.commit()
         flash("Product updated successfully!", "success")
         return redirect(url_for("admin.admin_dashboard"))
 
-    return render_template('edit_product.html', form=form, product=product)
+    return render_template('admin.html', form=form, product=product)
 
 
 @admin_bp.route('/delete/<int:product_id>', methods=['POST'])

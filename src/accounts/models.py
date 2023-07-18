@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
-    order = db.relationship('Order', backref='user', lazy=True)
+    order = db.relationship('Order', backref='users', lazy=True)
 
      # Constructor for the User class, initializing its attributes
     def __init__(self, name, email, password, phone_number, created_at, updated_at, is_admin=False):
