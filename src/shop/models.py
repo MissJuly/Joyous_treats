@@ -19,10 +19,9 @@ class Product(db.Model):
     image = db.Column(db.String(250))
     availability = db.Column(db.Boolean, default=False)
     discount = db.Column(db.Float, default=0.0)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
-    # order_item = db.relationship('OrderItem', backref='Product')
-    order_items = db.relationship('OrderItem', back_populates='product')
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+    order_item = db.relationship("OrderItem", backref='orderItem_product')
 
     # Constructor for the Product class, initializing its attributes
     def __init__(self, name, category, description, price, created_at, updated_at, image=None, availability=True, discount=0.0):
@@ -44,20 +43,30 @@ class OrderItem(db.Model):
     """Order item model to store order item details"""
     __tablename__ = 'order_item'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    user = db.Column(db.Integer, db.ForeignKey('users.id'))
+    product = db.Column(db.Integer, db.ForeignKey('product.id'))
     quantity = db.Column(db.Integer, default=1)
     status = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
-    # user = db.relationship("User", backref="order_items")
-    # product = db.relationship("Product", backref="order_items")
-    product = db.relationship('Product', back_populates='order_items')
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+    order = db.Column(db.Integer, db.ForeignKey('order.id'))
+
+
+    def __init__(self, user, product, order, quantity=1, status=False):
+        self.user = user
+        self.product = product
+        self.quantity = quantity
+        self.status = status
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.order = order
 
 
     def get_product_price(self):
         return self.quantity * self.product.price
+
+    def __repr__(self):
+        return f"<OrderItem {self.id}>"
 
 
 # Define Order model class for several order items
@@ -65,31 +74,25 @@ class Order(db.Model):
     """Order model to store order details"""
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     order_date = db.Column(db.Date)
     status = db.Column(db.Boolean, default=False)
     total_amount = db.Column(db.Float)
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+    order_item = db.relationship('OrderItem', backref='orderItem_orders')
 
-    order_items = db.relationship('OrderItem', backref='order')
-    # order_items = db.relationship(
-    #     "OrderItem",
-    #     secondary="order_item",
-    #     primaryjoin="Order.id == order_item.c.order_id",
-    #     secondaryjoin="OrderItem.id == order_item.c.order_item_id",
-    #     backref="order"
-    # )
 
-    def __init__(self, user_id, order_date=None, status=False, total_amount=0.0):
-        self.user_id = user_id
+    def __init__(self, user, order_date=None, status=False, total_amount=0.0):
+        self.user = user
         self.order_date = order_date
         self.status = status
         self.total_amount = total_amount
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
-
+    def __repr__(self):
+        return f"<Order {self.id}>"
 
 
 

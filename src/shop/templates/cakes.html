@@ -19,7 +19,7 @@
   {% for product in products %}
     <div class="cake">
       <div class="image" onmousemove="moveOverlay(event)">
-        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+        <img src="{{ url_for('display_images', filename=product.image) }}" alt="{{ product.name }}">
         <div class="overlay">
           <h3>* {{ product.name }} - Ksh {{ product.price }}</h3>
         </div>

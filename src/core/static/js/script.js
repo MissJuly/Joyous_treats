@@ -82,3 +82,42 @@ function moveOverlay(event) {
   overlay.style.transform = `translate(${x}px, ${y}px)`;
 }
 
+// Add your JavaScript code to handle the modal functionality
+// Get all edit links
+var editLinks = document.querySelectorAll('.edit-link');
+
+// Function to handle opening a modal
+function openModal(event) {
+    event.preventDefault();
+    var targetModalId = this.getAttribute('data-target');
+    var modal = document.querySelector(targetModalId);
+    modal.classList.add('show');
+}
+
+// Function to handle closing a modal
+function closeModal(event) {
+    event.preventDefault();
+    var modal = this.closest('.modal');
+    modal.classList.remove('show');
+}
+
+// Add event listeners to open the modals
+Array.prototype.forEach.call(editLinks, function(link) {
+    link.addEventListener('click', openModal);
+});
+
+// Add event listeners to close the modals
+var closeButtons = document.querySelectorAll('.modal .close');
+Array.prototype.forEach.call(closeButtons, function(button) {
+    button.addEventListener('click', closeModal);
+});
+
+//  // Close the modal when clicking outside the modal content
+//  window.addEventListener('click', function(event) {
+//   var modals = document.querySelectorAll('.modal');
+//   Array.prototype.forEach.call(modals, function(modal) {
+//       if (modal.classList.contains('show') && !modal.contains(event.target)) {
+//           modal.classList.remove('show');
+//       }
+//   });
+// });
