@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('core.static', filename='/images/favicon/favicon-16x16.png') }}" />
     <link rel="manifest" href="{{ url_for('core.static', filename='/images/favicon/site.webmanifest') }}" />
     <!-- css file -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('shop.static', filename='/css/cart-style.css') }}" />
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('core.static', filename='/css/flash-message-style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('core.static', filename='/css/home-style.css') }}" />
     <!-- googlefont imports -->
@@ -60,8 +60,8 @@
               <div class="nav-buttons">
                   <a id="search-icon">
                     <iconify-icon icon="carbon:search"></iconify-icon> </a>
-                  <a href="#cartPopup" id="cartBtn">
-                    <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon> </a>
+                  <a href="{{ url_for('shop.cart') }}">
+                    <iconify-icon icon="ph:shopping-cart-fill"></iconify-icon></a>
                   <a id="menu" href="javascript:void(0);" onclick="menuFunction()">
                     <iconify-icon class="menu-bars" icon="icon:menu"></iconify-icon>
                   </a>
@@ -70,29 +70,21 @@
           </nav>
 
           <!-- search bar -->
-          <div id="search-overlay" class="search-bar">
-            <div class="search-content">
-              <form role="form" id="search-form" action="/search" method="POST">
-                {{ form.csrf_token }}
-                <input type="text" name="query" id="search-input" placeholder="what are you searching for?" value="{{ request.args.get('query', '') }}">
-                <button type="submit">
-                <iconify-icon icon="carbon:search"></iconify-icon></i>
-                </button>
-              </form>
+          <div id="search-modal-overlay">
+            <div id="search-overlay" class="search-bar">
+              <div class="search-content">
+                <form role="form" id="search-form" action="/search" method="POST">
+                  {{ form.csrf_token }}
+                  <input type="text" name="query" id="search-input" placeholder="what are you searching for?" value="{{ request.args.get('query', '') }}">
+                  <button type="submit">
+                  <iconify-icon icon="carbon:search"></iconify-icon></i>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
 
-          <!-- Cart Modal-window -->
-          <div id="cartPopup" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <h2>Cart</h2>
-              <ul id="cart-items">
-                  <!-- Cart items will be dynamically added here -->
-              </ul>
-              <p id="total">Total: Ksh 0.00</p>
-            </div>
-        </div>
+
 
          <!-- messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}

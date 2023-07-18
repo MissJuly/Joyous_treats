@@ -1,9 +1,12 @@
+import os
 from datetime import datetime
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_user, login_required, logout_user
 from functools import wraps
+from werkzeug.utils import secure_filename
+# from werkzeug.datastructures import FileStorage
 
-from src import bcrypt, db
+from src import bcrypt, db, images
 from src.accounts import views
 from src.accounts.models import User
 from src.shop.models import Order, Product
@@ -59,32 +62,42 @@ def admin_dashboard():
     categories = set(product.category for product in products)
 
 
-    form = ProductForm(request.form)
+    form = ProductForm()
 
-
+    # print(request.files)
+    # print(request.form)
     if form.validate_on_submit():
-        # print(form.data)
-          # Get current timestamp
+        # Save the uploaded image file
+        filename = secure_filename(form.image.data.filename)
+        saved_filename = images.save(form.image.data)
+
+        # Get current timestamp
         current_time = datetime.now()
 
-        # Process the form data
-        product = Product(name=form.name.data,
-                          category=form.category.data,
-                          description=form.description.data,
-                          price=form.price.data,
-                          image_url=form.image_url.data,
-                          availability=form.availability.data,
-                          discount=form.discount.data,
-                          created_at=current_time,
-                          updated_at=current_time)
+        # Create a new Product instance
+        product = Product(
+            name=form.name.data,
+            category=form.category.data,
+            description=form.description.data,
+            price=form.price.data,
+            image=saved_filename,
+            availability=True,
+            discount=form.discount.data,
+            created_at=current_time,
+            updated_at=current_time
+        )
 
+        # Add the new product to the database
         db.session.add(product)
         db.session.commit()
 
         flash("Product added successfully!", "success")
         return redirect(url_for("admin.admin_dashboard"))
+    else:
+        print(form.errors)
 
     return render_template('admin.html', users=users, products=products, categories=categories, form=form)
+
 
 @admin_bp.route('/edit/<int:product_id>', methods=['GET', 'POST'])
 @admin_required

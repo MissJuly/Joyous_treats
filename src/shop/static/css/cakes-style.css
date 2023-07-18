@@ -37,13 +37,12 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   gap: 2rem;
   padding: 2rem;
 }
 
 .cake {
-  /* flex: 0 0 calc(33.33% - 2rem); */
   position: relative;
   padding-bottom: 3rem;
   text-align: center;

@@ -1,8 +1,19 @@
-{% extends "/core/templates/base.html" %}
+{% extends "base.html" %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('shop.static', filename='/css/cart-style.css') }}"
+/>
+{% endblock %}
+{% block title %}Cart-{% endblock %} {% block content %}
+  <div class="cart-content">
+    <h2>Cart</h2>
 
-{% block title %}Cart{% endblock %}
+      {{ order }}
 
-{% block content %}
+
+    <button id="clear-cart">Clear Cart</button>
+  </div>
 
 
 {% endblock %}

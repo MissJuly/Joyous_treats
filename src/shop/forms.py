@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, IntegerField, SubmitField, DecimalField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired, URL, NumberRange
+from wtforms.validators import DataRequired, NumberRange
 from src.shop.models import Product
 
 
@@ -12,7 +13,7 @@ class ProductForm(FlaskForm):
     category = StringField("Category", validators=[DataRequired()])
     description = TextAreaField("Description", validators=[DataRequired()])
     price = DecimalField("Price", validators=[DataRequired(), NumberRange(min=0.01)])
-    image_url = StringField("Image URL", validators=[DataRequired(), URL()])
+    image = FileField("Image", validators=[FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'], 'Images 0nly!')])
     availability = BooleanField("Availability", default=True)
     discount = IntegerField("Discount Percentage", validators=[NumberRange(min=0, max=100)])
     submit = SubmitField("Add Product")

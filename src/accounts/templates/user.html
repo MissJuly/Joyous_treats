@@ -27,6 +27,16 @@
             <th>Amount</th>
           </tr>
         </thead>
+        <tbody>
+          {% for order in current_user.orders %}
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.order_items[0].product.name }}</td>
+            <td>{{ order.order_items[0].quantity }}</td>
+            <td>{{ order.total_amount }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
       </table>
     </div>
 

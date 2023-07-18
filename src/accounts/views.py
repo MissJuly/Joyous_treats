@@ -90,7 +90,7 @@ def login():
         else:
             # If the email and/or password is incorrect, show an error message
             flash("Invalid email and/or password.", "danger")
-            return  redirect(url_for("accounts.register"))
+            return  redirect(url_for("accounts.login"))
     # Render the login template with the form
     return render_template('login.html', form=form)
 
@@ -109,4 +109,7 @@ def logout():
 @accounts_bp.route("/user")
 @login_required
 def user_dashboard():
-    return render_template('user.html')
+    user_orders = Order.query.filter_by(user_id=current_user.id).all()
+    print(user_orders)  # Print the orders to verify
+
+    return render_template('user.html', orders=user_orders)
