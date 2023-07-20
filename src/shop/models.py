@@ -21,7 +21,7 @@ class Product(db.Model):
     discount = db.Column(db.Float, default=0.0)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
-    order_item = db.relationship("OrderItem", backref='orderItem_product')
+    order_item = db.relationship("OrderItem", back_populates='product')
 
     # Constructor for the Product class, initializing its attributes
     def __init__(self, name, category, description, price, created_at, updated_at, image=None, availability=True, discount=0.0):
@@ -44,12 +44,13 @@ class OrderItem(db.Model):
     __tablename__ = 'order_item'
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('users.id'))
-    product = db.Column(db.Integer, db.ForeignKey('product.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     quantity = db.Column(db.Integer, default=1)
     status = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.Date, default=datetime.now())
     updated_at = db.Column(db.Date, default=datetime.now())
     order = db.Column(db.Integer, db.ForeignKey('order.id'))
+    product = db.relationship('Product', back_populates='order_item')
 
 
     def __init__(self, user, product, order, quantity=1, status=False):
@@ -63,7 +64,10 @@ class OrderItem(db.Model):
 
 
     def get_product_price(self):
-        return self.quantity * self.product.price
+        price = self.quantity * self.product.price
+        print(f'This is the price {price}')
+        return price
+
 
     def __repr__(self):
         return f"<OrderItem {self.id}>"
@@ -77,22 +81,23 @@ class Order(db.Model):
     user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     order_date = db.Column(db.Date)
     status = db.Column(db.Boolean, default=False)
-    total_amount = db.Column(db.Float)
+    total_amount = db.Column(db.Float, default=0.0)
     created_at = db.Column(db.Date, default=datetime.now())
     updated_at = db.Column(db.Date, default=datetime.now())
-    order_item = db.relationship('OrderItem', backref='orderItem_orders')
+    order_item = db.relationship('OrderItem', backref='orders')
 
-
-    def __init__(self, user, order_date=None, status=False, total_amount=0.0):
-        self.user = user
-        self.order_date = order_date
-        self.status = status
-        self.total_amount = total_amount
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def calculate_total_amount(self):
+            total_amount = 0
+            for order_item in self.order_item:
+                item_amount = order_item.get_product_price()
+                total_amount += item_amount
+            print(total_amount)
+            return float(total_amount)
 
     def __repr__(self):
         return f"<Order {self.id}>"
+
+
 
 
 

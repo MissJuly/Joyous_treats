@@ -32,7 +32,7 @@ body {
   text-transform: uppercase;
   font-style: italic;
   font-size: 60px;
-  border-bottom: 30px solid #987654;
+  border-bottom: 3px solid #987654;
 }
 
 .products {
@@ -138,7 +138,7 @@ body {
   }
 
   .no-results h3 {
-    border-bottom: 30px solid #987654;
+    border-bottom: 3px solid #987654;
     text-transform: uppercase;
     color: #1f3a48;
     font-size: 30px;
