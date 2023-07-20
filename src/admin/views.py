@@ -18,10 +18,10 @@ def fetch_registered_users():
     users = User.query.all()
     return users
 
-# def fetch_order():
-#     # Use SQLAlchemy query to fetch all orders from the databse
-#     orders = Order.query.all()
-#     return orders
+def fetch_order():
+    # Use SQLAlchemy query to fetch all orders from the databse
+    orders = Order.query.all()
+    return orders
 
 def fetch_available_products():
     # Use SQLAlchemy query to fetch all available products from database
@@ -57,7 +57,7 @@ def admin_required(f):
 @admin_required
 def admin_dashboard():
     users = fetch_registered_users()
-    # orders = fetch_order()
+    orders = fetch_order()
     products = fetch_available_products()
     categories = set(product.category for product in products)
 
@@ -96,7 +96,7 @@ def admin_dashboard():
     else:
         print(form.errors)
 
-    return render_template('admin.html', users=users, products=products, categories=categories, form=form)
+    return render_template('admin.html', users=users, orders=orders, products=products, categories=categories, form=form)
 
 
 @admin_bp.route('/edit/<int:product_id>', methods=['GET', 'POST'])

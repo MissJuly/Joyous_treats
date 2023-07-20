@@ -1,14 +1,16 @@
-from datetime import datetime
+import secrets
+from datetime import datetime, timedelta
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from flask_login import current_user, login_user, login_required, logout_user
-from functools import wraps
+from flask_mail import Mail, Message
 
-from src import bcrypt, db
+
+from src import app, bcrypt, db, mail
 from src.accounts.models import User
 from src.shop.models import Order, Product
 from src.shop.forms import ProductForm
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm
 
 
 # Create a Blueprint for the accounts module
@@ -109,7 +111,72 @@ def logout():
 @accounts_bp.route("/user")
 @login_required
 def user_dashboard():
-    user_orders = Order.query.filter_by(user_id=current_user.id).all()
-    print(user_orders)  # Print the orders to verify
+    return render_template('user.html')
 
-    return render_template('user.html', orders=user_orders)
+@accounts_bp.route("/forgot-password", methods=["GET", "POST"])
+def forgot_password():
+    form = ForgotPasswordForm()
+
+    if form.validate_on_submit():
+        email = form.email.data
+
+        # Retrieve the user from the database
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            # Generate a unique token
+            token = secrets.token_urlsafe(32)
+
+            # Set the token expiration time
+            expiration_time = datetime.now() + timedelta(hours=1)
+
+            # Store the token and expiration time in the user object
+            user.reset_token = token
+            user.reset_token_expiration = expiration_time
+            db.session.commit()
+
+            # Send the password reset email with the token
+            send_password_reset_email(email, token)
+
+        return "Password reset email sent!"  # Display a success message
+
+    return render_template("reset_forgot_password.html", form=form, reset_mode=False)
+
+def send_password_reset_email(email, token):
+    try:
+        # Create a password reset URL with the token as a query parameter
+        reset_url = url_for("accounts.reset_password", token=token, _external=True)
+
+        # Create the email message
+        subject = "Password Reset"
+        body = f"Click the following link to reset your password: {reset_url}"
+        sender = app.config["MAIL_DEFAULT_SENDER"]
+        recipient = email
+        message = Message(subject=subject, body=body, sender=sender, recipients=[recipient])
+
+        # Send the email
+        mail.send(message)
+
+        # Log successful email sending
+        app.logger.info("Password reset email sent successfully to %s", email)
+    except Exception as e:
+        # Log the error and provide a fallback message
+        app.logger.error("Failed to send password reset email to %s. Error: %s", email, str(e))
+        raise
+
+@accounts_bp.route("/reset-password/<token>", methods=["GET", "POST"])
+def reset_password(token):
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+        password = form.password.data
+        confirm_password = form.confirm_password.data
+
+        # Validate password and confirm_password match
+
+        # Update the user's password in the database
+        hashed_password = generate_password_hash(password)
+
+        # Display a success message or redirect to a success page
+
+    return render_template("reset_forgot_password.html", form=form, reset_mode=True, token=token)

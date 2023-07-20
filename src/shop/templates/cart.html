@@ -4,16 +4,49 @@
   type="text/css"
   href="{{ url_for('shop.static', filename='/css/cart-style.css') }}"
 />
-{% endblock %}
-{% block title %}Cart-{% endblock %} {% block content %}
-  <div class="cart-content">
-    <h2>Cart</h2>
-
-      {{ orders.total_amount }}
-
-
-    <button id="clear-cart">Clear Cart</button>
+{% endblock %} {% block title %}Cart-{% endblock %} {% block content %}
+<div class="cart-content">
+  <div class="cart-table">
+    {% if orders.order_item %}
+    <h2>Your Cart</h2>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Remove Item</th>
+        </tr>
+        {% for order_item in orders.order_item %}
+        <tr>
+          <td>{{ order_item.product.name }}</td>
+          <td>{{ order_item.quantity }}</td>
+          <td>Ksh {{ order_item.product.price }}</td>
+          <td>
+            <form action="{{ url_for('shop.delete_item', order_item_id=order_item.id) }}" method="POST" class="delete-item-form">
+              <button type="submit" class="delete-item-button"><iconify-icon icon="ic:baseline-delete"></iconify-icon></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <div class="total">Total Amount : Ksh {{ orders.total_amount }}</div>
+    </div>
+    <div class="clear_cart_or_checkout">
+      <form action="{{ url_for('shop.clear_cart') }}" method="POST" class="clear-cart-form">
+        <button class="button" type="submit"><span>Clear cart</span></button>
+      </form>
+      <form action="{{ url_for('shop.checkout') }}" method="POST" class="checkout-form">
+        <button class="button" type="submit"><span>Checkout</span></button>
+      </form>
+    </div>
+  {% else %}
+  <div class="empty-cart">
+    <h3>Your cart is empty</h3>
+    <p>You haven't added any products to your cart yet.</p>
+    <a href="{{ url_for('shop.shop')}}">
+      BROWSE SHOP</a
+    >
   </div>
-
-
+  {% endif %}
+</div>
 {% endblock %}

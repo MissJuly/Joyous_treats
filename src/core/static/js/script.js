@@ -66,7 +66,7 @@ window.onclick = function (e) {
 };
 
 // //add title overlay effect on images with mouse movement
-document.addEventListener("mousemove", function(event) {
+document.addEventListener("mousemove", function (event) {
   var target = event.target;
   if (target.classList.contains("image")) {
     moveOverlay(event);
@@ -82,42 +82,55 @@ function moveOverlay(event) {
   overlay.style.transform = `translate(${x}px, ${y}px)`;
 }
 
+
+
+
+
 // Add your JavaScript code to handle the modal functionality
-// Get all edit links
-var editLinks = document.querySelectorAll('.edit-link');
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all modal elements
+  var modals = document.getElementsByClassName('modal');
 
-// Function to handle opening a modal
-function openModal(event) {
-    event.preventDefault();
-    var targetModalId = this.getAttribute('data-target');
-    var modal = document.querySelector(targetModalId);
-    modal.classList.add('show');
-}
+  // Function to handle opening a modal
+  function openModal(modal) {
+    modal.style.display = 'block';
+  }
 
-// Function to handle closing a modal
-function closeModal(event) {
-    event.preventDefault();
-    var modal = this.closest('.modal');
-    modal.classList.remove('show');
-}
+  // Function to handle closing a modal
+  function closeModal(modal) {
+    modal.style.display = 'none';
+  }
 
-// Add event listeners to open the modals
-Array.prototype.forEach.call(editLinks, function(link) {
-    link.addEventListener('click', openModal);
+  // Add event listeners to open and close the modals
+  Array.prototype.forEach.call(modals, function(modal) {
+    // Get the modal's close button
+    var closeBtn = modal.querySelector('.close');
+
+    // Open the modal when the corresponding link is clicked
+    var openBtns = document.querySelectorAll('[data-target="#' + modal.id + '"]');
+    openBtns.forEach(function(openBtn) {
+      openBtn.addEventListener('click', function() {
+        openModal(modal);
+      });
+    });
+
+    // Close the modal when the close button is clicked
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        closeModal(modal);
+      });
+    }
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
+    });
+
+    // Prevent the modal from closing when clicking inside the modal content
+    modal.addEventListener('click', function(event) {
+      event.stopPropagation();
+    });
+  });
 });
-
-// Add event listeners to close the modals
-var closeButtons = document.querySelectorAll('.modal .close');
-Array.prototype.forEach.call(closeButtons, function(button) {
-    button.addEventListener('click', closeModal);
-});
-
-//  // Close the modal when clicking outside the modal content
-//  window.addEventListener('click', function(event) {
-//   var modals = document.querySelectorAll('.modal');
-//   Array.prototype.forEach.call(modals, function(modal) {
-//       if (modal.classList.contains('show') && !modal.contains(event.target)) {
-//           modal.classList.remove('show');
-//       }
-//   });
-// });

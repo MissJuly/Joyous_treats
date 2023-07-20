@@ -6,6 +6,7 @@ from src.accounts.models import User
 from src.shop.forms import ProductForm, SearchForm
 from src.shop.models import Product, Order, OrderItem
 import os
+import stripe
 
 
 # Create a Blueprint for the shop section of the website
@@ -15,44 +16,57 @@ shop_bp = Blueprint(
     static_folder='static',
     static_url_path="/shop/static"
 )
-# Pass to base
+# # Fetch product categories
+# def fetch_products(category_name):
+#     products = Product.query.filter_by(category=category_name).all()
+#     product_names = [product.name for product in products]
+#     return product_names
 
 
 # Define a route for the main shop page
 @shop_bp.route("/shop")
 def shop():
-    return render_template('shop.html')
+    categories = ['cakes', 'pies', 'pastries', 'fancy_desserts']
+    category_images = get_category_images(categories)
+    return render_template('shop.html', categories=categories, get_category_images=get_category_images, get_category_alt=get_category_alt)
 
-# Define a route for the cakes page
-@shop_bp.route("/shop/cakes")
-def cakes():
-    products = Product.query.filter_by(category='cakes').all()
-    return render_template('cakes.html', products=products)
+def get_category_images(categories):
+    category_images = {
+        'cakes': 'cake-1.jpg',
+        'pies': 'pie-1.jpg',
+        'pastries': 'pastry-1.jpg',
+        'fancy_desserts': 'fd-1.jpg'
+    }
+    return [category_images.get(category) for category in categories]
 
-# Define a route for the pies page
-@shop_bp.route("/shop/pies")
-def pies():
-    products = Product.query.filter_by(category='pies').all()
-    return render_template('pies.html', products=products)
+def get_category_alt(category):
+    category_alts = {
+        'cakes': 'oreo cake',
+        'pies': 'mini chocolate pies',
+        'pastries': 'croissant',
+        'fancy_desserts': 'pastel colored macarons'
+    }
+    return category_alts.get(category, '')
 
-# Define a route for the pastries page
-@shop_bp.route("/shop/pastries")
-def pastries():
-    products = Product.query.filter_by(category='pastries').all()
-    return render_template('pastries.html', products=products)
+@shop_bp.route("/shop/<category_name>")
+def category(category_name):
+    products = Product.query.filter_by(category=category_name).all()
+    message = get_category_message(category_name)
+    return render_template('products.html', category=category_name, products=products, message=message)
 
-# Define a route for the fancy desserts page
-@shop_bp.route("/shop/fancy-desserts")
-def fancy_desserts():
-    products = Product.query.filter_by(category='fancy desserts').all()
-    return render_template('fancy-desserts.html', products=products)
+def get_category_message(category_name):
+    if category_name == 'cakes':
+        return 'Take a walk through our cakes and be inspired to try...everything!'
+    elif category_name == 'pies':
+        return "A world of irresistible pie goodness... don't be shy!!!"
+    elif category_name == 'pastries':
+        return 'Indulge in a symphony of flavors that will transport you to pastry paradise!!!'
+    elif category_name == 'fancy_desserts':
+        return 'A realm where dessert dreams come true!!!'
+    else:
+        return ''
 
-# Serve uploaded images
-# @shop_bp.route('/images/<filename>')
-# def display_images(filename):
-#     return send_from_directory(app.config["UPLOADED_IMAGES_DEST"], filename)
-
-
+#
 # Search products in database
 @shop_bp.route("/search", methods=['POST', 'GET'])
 def search():
@@ -68,85 +82,121 @@ def search():
     return render_template('search.html', form=form, products=[], search_term=search_term)
 
 
-# Api routes
-# Retrieve a list of available bakery products
-@shop_bp.route("/api/products", methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    product_list = []
-
-    for product in products:
-        product_data = {
-            'id': product.id,
-            'name': product.name,
-            'category': product.category,
-            'description': product.description,
-            'price': product.price,
-            'image_url': product.image_url,
-            'availability': product.availability,
-            'discount': product.discount
-        }
-        product_list.shop_bpend(product_data)
-
-    return jsonify(product_list)
-
-# Fetch details about a specific product by providing its unique identifier
-@shop_bp.route("/api/products/<int:product_id>", methods=['GET'])
-def get_product(product_id):
-    product = Product.query.get(product_id)
-
-    if product is None:
-        return jsonify({'error': 'Product not found'}), 404
-
-    product_data = {
-            'id': product.id,
-            'name': product.name,
-            'category': product.category,
-            'description': product.description,
-            'price': product.price,
-            'image_url': product.image_url,
-            'availability': product.availability,
-            'discount': product.discount
-    }
-
-    return jsonify(product_data)
-
 # Route for product detail view
 @shop_bp.route('/product-detail/<int:product_id>',  methods=['GET', 'POST'])
 @login_required
 def product_detail(product_id):
     product = Product.query.get(product_id)
     if request.method == 'POST':
-        order_item = OrderItem.query.filter_by(product=product.id, user=current_user.id, status=False).first()
+        order_item = OrderItem.query.filter_by(product=product, user=current_user.id, status=False).first()
         order = Order.query.filter_by(user=current_user.id, status=False).first()
 
         if order:
             # Check if order_item exists
             if order_item:
                 order_item.quantity += 1
+                order.total_amount = order.calculate_total_amount()
                 db.session.commit()
                 flash('Product added successfully!', 'success')
+                return redirect(url_for('shop.cart'))
             else:
                 order = Order.query.filter_by(user=current_user.id, status=False).first()
-                order_item = OrderItem(product=product.id, user=current_user.id, order=order.id)
+                order_item = OrderItem(product=product, user=current_user.id, order=order.id)
                 db.session.add(order_item)
+                order.total_amount = order.calculate_total_amount()
                 db.session.commit()
                 flash('Product added successfully!', 'success')
+                return redirect(url_for('shop.cart'))
         else:
             order = Order(user=current_user.id)
             db.session.add(order)
             new_order = Order.query.filter_by(user=current_user.id, status=False).first()
-            order_item = OrderItem(product=product.id, user=current_user.id, order=new_order.id)
+            order_item = OrderItem(product=product, user=current_user.id, order=new_order.id)
             db.session.add(order_item)
+            new_order.total_amount = new_order.calculate_total_amount()
             db.session.commit()
             flash('Product added successfully!', 'success')
+            return redirect(url_for('shop.cart'))
 
     return render_template('product-detail.html', product=product)
+
+@shop_bp.route("/delete_item/<int:order_item_id>", methods=["POST"])
+def delete_item(order_item_id):
+    # Get the order item by its ID and delete it from the cart
+    order_item = OrderItem.query.get_or_404(order_item_id)
+    db.session.delete(order_item)
+    db.session.commit()
+
+    # Redirect to the cart page
+    return redirect(url_for("shop.cart"))
+
+
+@shop_bp.route("/clear_cart", methods=["POST"])
+def clear_cart():
+    # Retrieve all orders from the cart
+    orders = Order.query.all()
+
+    # Delete all associated order items first
+    for order in orders:
+        order_items = OrderItem.query.filter_by(order=order.id).all()
+        for order_item in order_items:
+            db.session.delete(order_item)
+
+    # Delete the orders
+    for order in orders:
+        db.session.delete(order)
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Redirect to the cart page
+    return redirect(url_for("shop.cart"))
 
 
 @shop_bp.route('/cart')
 @login_required
 def cart():
-    # order_item = OrderItem.query.filter_by(product=product.id, )
     orders = Order.query.filter_by(user=current_user.id, status=False).first()
     return render_template('cart.html', orders=orders)
+
+
+@shop_bp.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    DOMAIN = 'http://localhost:5000'
+    if request.method == 'POST':
+        order = Order.query.filter_by(user=current_user.id, status=False).first()
+        price = order.total_amount
+        stripe_price = int(price * 100)
+        customer_order_id = f'Order ID: #{order.id}'
+
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[
+                    {
+                        'price_data': {
+                            'unit_amount': stripe_price,
+                            'currency' : 'kes',
+                            'product_data' : {
+                                'name' : customer_order_id
+                            },
+                        },
+                        'quantity': 1,
+                    },
+                ],
+                mode='payment',
+                success_url=DOMAIN + '/success.html',
+                cancel_url=DOMAIN + '/cancel.html',
+        )
+        except Exception as e:
+            return str(e)
+
+    return redirect(checkout_session.url, code=303)
+
+@shop_bp.route('/success')
+def success():
+    return redirect(url_for('shop.sucess'))
+
+@shop_bp.route('/cancel')
+def cancel():
+    return redirect(url_for('shop.cancel'))
