@@ -37,17 +37,17 @@
             <tr>
               <th>Order ID</th>
               <th>User</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
+              <th>Order Date</th>
+              <th>Order Status</th>
             </tr>
           </thead>
           <tbody>
-              {% for order_item in orders.order_item %}
+              {% for order in orders %}
               <tr>
                 <td>{{ order.id }}</td>
-                <td> {{ user.name }}</td>
-                <td>{{ order_item.product.name }}</td>
-                <td>{{ order_item.quantity }}</td>
+                <td>{{ order.user.id }}</td>
+                <td>{{ order.order_date }}</td>
+                <td>{{ "Completed" if order.status else "Pending" }}</td>
               </tr>
              {% endfor %}
           </tbody>

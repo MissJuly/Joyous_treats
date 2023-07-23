@@ -65,7 +65,6 @@ class OrderItem(db.Model):
 
     def get_product_price(self):
         price = self.quantity * self.product.price
-        print(f'This is the price {price}')
         return price
 
 
@@ -79,7 +78,7 @@ class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    order_date = db.Column(db.Date)
+    order_date = db.Column(db.Date, default=datetime.now())
     status = db.Column(db.Boolean, default=False)
     total_amount = db.Column(db.Float, default=0.0)
     created_at = db.Column(db.Date, default=datetime.now())
@@ -91,7 +90,6 @@ class Order(db.Model):
             for order_item in self.order_item:
                 item_amount = order_item.get_product_price()
                 total_amount += item_amount
-            print(total_amount)
             return float(total_amount)
 
     def __repr__(self):
