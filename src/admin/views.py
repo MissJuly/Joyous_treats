@@ -18,10 +18,6 @@ def fetch_registered_users():
     users = User.query.all()
     return users
 
-def fetch_order():
-    # Use SQLAlchemy query to fetch all orders from the databse
-    orders = Order.query.all()
-    return orders
 
 def fetch_available_products():
     # Use SQLAlchemy query to fetch all available products from database
@@ -57,15 +53,14 @@ def admin_required(f):
 @admin_required
 def admin_dashboard():
     users = fetch_registered_users()
-    orders = fetch_order()
+    orders = Order.query.all()
+    print(orders)
     products = fetch_available_products()
     categories = set(product.category for product in products)
 
 
     form = ProductForm()
 
-    # print(request.files)
-    # print(request.form)
     if form.validate_on_submit():
         # Save the uploaded image file
         filename = secure_filename(form.image.data.filename)
@@ -93,8 +88,6 @@ def admin_dashboard():
 
         flash("Product added successfully!", "success")
         return redirect(url_for("admin.admin_dashboard"))
-    else:
-        print(form.errors)
 
     return render_template('admin.html', users=users, orders=orders, products=products, categories=categories, form=form)
 
@@ -111,7 +104,6 @@ def edit_product(product_id):
 
         # Check if a new image file has been uploaded
         if form.image.data:
-            # print(form.errors)
             # Save the uploaded image file
             filename = secure_filename(form.image.data.filename)
             saved_filename = images.save(form.image.data)

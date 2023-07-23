@@ -111,7 +111,14 @@ def logout():
 @accounts_bp.route("/user")
 @login_required
 def user_dashboard():
-    return render_template('user.html')
+    # Check if the user is logged in
+    if current_user.is_authenticated:
+        # Retrieve the current user's orders from the database
+        user_orders = Order.query.filter_by(user=current_user.id).all()
+        return render_template("user.html", user_orders=user_orders)
+    else:
+        # Redirect the user to the login page if they are not logged in
+        return redirect(url_for('accounts.login'))
 
 @accounts_bp.route("/forgot-password", methods=["GET", "POST"])
 def forgot_password():

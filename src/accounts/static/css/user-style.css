@@ -19,12 +19,15 @@
 
 .user-container {
   padding: 10rem 2rem 5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 .user {
   font-size: 20px;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 .user p {
   color: #402203;
@@ -34,7 +37,7 @@
 }
 
 .orders {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     padding: 1.5rem;
     background: transparent;
     background-color: rgba(217, 217, 217, 0.2);

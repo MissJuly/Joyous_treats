@@ -22,20 +22,20 @@
         <thead>
           <tr>
             <th>Order ID</th>
-            <th>Product Name</th>
-            <th>Quantity</th>
+            <th>Order Date</th>
+            <th>Status</th>
             <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          {% for order in current_user.orders %}
-          <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.order_items[0].product.name }}</td>
-            <td>{{ order.order_items[0].quantity }}</td>
-            <td>{{ order.total_amount }}</td>
-          </tr>
-          {% endfor %}
+          {% for order in user_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.order_date }}</td>
+                <td>{{ "Completed" if order.status else "Pending" }}</td>
+                <td>{{ order.total_amount }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
       </table>
     </div>
