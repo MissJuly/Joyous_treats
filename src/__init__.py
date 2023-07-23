@@ -9,6 +9,8 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf import CSRFProtect
 import os
 import stripe
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 # Create a Flask application instance
