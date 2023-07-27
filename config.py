@@ -4,7 +4,7 @@ import mysql.connector
 DATABASE_URI = config("DATABASE_URL")
 
 class Config(object):
-    DEBUG = False
+    DEBUG = True
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = config("SECRET_KEY", default="guess-me")
@@ -12,7 +12,7 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BCRYPT_LOG_ROUNDS = 13
     WTF_CSRF_ENABLED = True
-    DEBUG_TB_ENABLED = False
+    DEBUG_TB_ENABLED = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 
@@ -33,4 +33,4 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = True
-    DEBUG_TB_ENABLED = False
+    DEBUG_TB_ENABLED = True
