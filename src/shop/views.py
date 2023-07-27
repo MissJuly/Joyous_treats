@@ -16,18 +16,12 @@ shop_bp = Blueprint(
     static_folder='static',
     static_url_path="/shop/static"
 )
-# # Fetch product categories
-# def fetch_products(category_name):
-#     products = Product.query.filter_by(category=category_name).all()
-#     product_names = [product.name for product in products]
-#     return product_names
-
 
 # Define a route for the main shop page
 @shop_bp.route("/shop")
 def shop():
-    categories = ['cakes', 'pies', 'pastries', 'fancy_desserts']
-    category_images = get_category_images(categories)
+    categories = ['cakes', 'pies', 'pastries', 'fancy desserts']
+    # category_images = get_category_images(categories)
     return render_template('shop.html', categories=categories, get_category_images=get_category_images, get_category_alt=get_category_alt)
 
 def get_category_images(categories):
@@ -35,7 +29,7 @@ def get_category_images(categories):
         'cakes': 'cake-1.jpg',
         'pies': 'pie-1.jpg',
         'pastries': 'pastry-1.jpg',
-        'fancy_desserts': 'fd-1.jpg'
+        'fancy desserts': 'fd-1.jpg'
     }
     return [category_images.get(category) for category in categories]
 
@@ -44,7 +38,7 @@ def get_category_alt(category):
         'cakes': 'oreo cake',
         'pies': 'mini chocolate pies',
         'pastries': 'croissant',
-        'fancy_desserts': 'pastel colored macarons'
+        'fancy desserts': 'pastel colored macarons'
     }
     return category_alts.get(category, '')
 
@@ -61,7 +55,7 @@ def get_category_message(category_name):
         return "A world of irresistible pie goodness... don't be shy!!!"
     elif category_name == 'pastries':
         return 'Indulge in a symphony of flavors that will transport you to pastry paradise!!!'
-    elif category_name == 'fancy_desserts':
+    elif category_name == 'fancy desserts':
         return 'A realm where dessert dreams come true!!!'
     else:
         return ''
@@ -163,7 +157,7 @@ def cart():
 @shop_bp.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
-    DOMAIN = 'http://localhost:5000'
+    DOMAIN = 'http://127.0.0.1:5000'
     if request.method == 'POST':
         order = Order.query.filter_by(user=current_user.id, status=False).first()
         price = order.total_amount
@@ -185,8 +179,8 @@ def checkout():
                     },
                 ],
                 mode='payment',
-                success_url=DOMAIN + '/success.html',
-                cancel_url=DOMAIN + '/cancel.html',
+                success_url=url_for('shop.success', _external=True),
+                cancel_url=DOMAIN + '/cancel',
         )
         except Exception as e:
             return str(e)
@@ -195,8 +189,8 @@ def checkout():
 
 @shop_bp.route('/success')
 def success():
-    return redirect(url_for('shop.sucess'))
+    return render_template('success.html')
 
 @shop_bp.route('/cancel')
 def cancel():
-    return redirect(url_for('shop.cancel'))
+    return render_template('cancel.html')

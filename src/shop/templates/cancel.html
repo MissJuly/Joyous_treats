@@ -1,6 +1,10 @@
-
-
-
-
-<h2>Payment Canceled</h2>
-        <p>Your payment was canceled.</p>
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('shop.static', filename='/css/payment-result-style.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="payment-result">
+    <h2>Payment Canceled</h2>
+    <p>Your payment was canceled.</p>
+  </div>
+{% endblock %}
