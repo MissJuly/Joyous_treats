@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     updated_at = db.Column(db.DateTime, nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     order = db.relationship('Order', backref='users', lazy=True)
+    reset_token = db.Column(db.String(100))
+    reset_token_expiration = db.Column(db.DateTime)
 
      # Constructor for the User class, initializing its attributes
     def __init__(self, name, email, password, phone_number, created_at, updated_at, is_admin=False):

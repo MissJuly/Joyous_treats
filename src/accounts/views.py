@@ -145,7 +145,7 @@ def forgot_password():
             # Send the password reset email with the token
             send_password_reset_email(email, token)
 
-        return "Password reset email sent!"  # Display a success message
+        flash("Password reset email sent!", 'success')  # Display a success message
 
     return render_template("reset_forgot_password.html", form=form, reset_mode=False)
 
@@ -180,10 +180,30 @@ def reset_password(token):
         confirm_password = form.confirm_password.data
 
         # Validate password and confirm_password match
+        if password != confirm_password:
+            flash("Passwords do not match.", 'danger')
+            return render_template("reset_forgot_password.html", form=form, reset_mode=True, token=token)
 
-        # Update the user's password in the database
-        hashed_password = generate_password_hash(password)
+        # Retrieve the user from the database using the token as the identifier
+        user = User.query.filter_by(reset_token=token).first()
 
-        # Display a success message or redirect to a success page
+        if user:
+            # Check if the token has expired
+            if user.reset_token_expiration and user.reset_token_expiration < datetime.now():
+                flash("Token has expired. Please request a new password reset.", 'danger')
+                return render_template("reset_forgot_password.html", form=form, reset_mode=True, token=token)
+
+            # Update the user's password in the database
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            user.password = hashed_password
+            user.reset_token = None  # Remove the token since it's no longer needed
+            user.reset_token_expiration = None  # Also remove the expiration time
+            db.session.commit()
+
+            # Display a success message and redirect to a success page
+            flash("Password reset successfully!", 'success')
+            return redirect(url_for("accounts.login"))
+
+        flash("Invalid or expired token. Please request a new password reset.", 'danger')
 
     return render_template("reset_forgot_password.html", form=form, reset_mode=True, token=token)

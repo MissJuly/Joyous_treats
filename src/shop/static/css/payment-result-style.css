@@ -1,0 +1,26 @@
+.payment-result {
+    background-color: #fdfdfd;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+}
+
+.payment-result h2 {
+    margin-bottom: 20px;
+    border-bottom: 3px solid #987654;
+    text-align: center;
+    text-transform: uppercase;
+    color: #402203;
+    padding: 2rem;
+    font-size: 30px;
+  }
+
+  .payment-result p {
+    margin-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+    font-style: italic;
+    color: #1f3a48;
+    padding: 2rem;
+  }
